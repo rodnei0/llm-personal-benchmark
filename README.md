@@ -4,6 +4,12 @@ Laboratório pessoal e aberto para avaliar a utilidade de modelos locais e comer
 
 **Versão 0.2.0: LOG-001, importação manual e execução via Ollama.** Os exemplos versionados continuam demonstrativos. Nenhum resultado de modelo real foi obtido durante o desenvolvimento.
 
+## Comece aqui
+
+Não precisa de IA para acompanhar: siga o [guia do zero no Ubuntu](docs/setup-ubuntu.md), com checkpoints, instalação do Ollama, primeiro teste e solução de problemas. Registre o que executar no [modelo de diário](docs/templates/session.md). O guia ainda aguarda validação no homelab; os testes do código usam servidor simulado.
+
+**Branch desta entrega: `feat/ollama-runner` ([PR #1](https://github.com/rodnei0/llm-personal-benchmark/pull/1)).** A main inicial não contém o adaptador.
+
 ## Instalação
 
 Python 3.12 ou superior. Na raiz do projeto:
