@@ -85,3 +85,18 @@ Saídas fornecidas pelo usuário ao longo da configuração:
 - Licença exibida: Qwen RESEARCH LICENSE AGREEMENT, data de lançamento September 19, 2024.
 
 O contexto declarado do modelo não é o contexto configurado no experimento: o piloto solicita num_ctx=4096. A capacidade tools não significa ferramentas habilitadas no teste. Próximo passo: conferir as variáveis sem truncamento e executar uma resposta curta acompanhando sensores. Nenhuma inferência ou backend efetivo confirmado até este registro.
+
+## Etapa 6 — primeira inferência real de funcionamento
+
+Executada pelo usuário em 2026-10-23; API registrou created_at=2026-10-23T23:40:57.175352216Z (19:40:57 -04:00).
+
+- Modelo qwen2.5:3b; prompt: Responda somente: OK.
+- Parâmetros: stream=false, keep_alive=1m, temperature=0, seed=42, num_ctx=4096, num_predict=16.
+- Resposta: OK; done=true; done_reason=stop.
+- Métricas reportadas pela API (não cronômetro de ponta a ponta do cliente): total_duration=42777628871 ns (42.778 s), load_duration=41103764160 ns (41.104 s), prompt_eval_count=36, prompt_eval_cached_count=0, prompt_eval_duration=1588486000 ns (1.588 s), eval_count=2, eval_duration=82229000 ns (0.082229 s).
+- Taxa calculada: aproximadamente 24.32 tokens/s para apenas 2 tokens; amostra curta demais para caracterizar desempenho sustentado.
+- ollama ps: 2.3 GB, PROCESSOR 59%/41% CPU/GPU, CONTEXT 4096, RUNNER llamacpp. A coluna PROCESSOR descreve alocação do modelo; não comprova divisão percentual de tempo/uso computacional.
+- Temperatura informada pelo usuário: 73 °C observados; sensor específico, série temporal e método de captura não fornecidos. Não tratar como pico instrumentado ou teste de estabilidade.
+- Usuário executou ollama stop qwen2.5:3b; comando retornou sem mensagem de erro. Estado descarregado ainda não confirmado por ollama ps posterior.
+
+Conclusão limitada: inferência local funcional e backend híbrido observado. Este é um teste de funcionamento, não um resultado LOG-001. Nenhum benchmark funcional executado até esta etapa. Variáveis de serviço além de OLLAMA_HOST continuam sem saída completa compartilhada; digest completo do modelo ainda pendente. Próximo passo proposto: confirmar descarregamento e retorno térmico às condições iniciais, conferir variáveis e executar uma única rodada LOG-001 com monitoramento.
