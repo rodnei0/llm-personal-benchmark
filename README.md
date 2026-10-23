@@ -2,7 +2,7 @@
 
 Laboratório pessoal e aberto para avaliar a utilidade de modelos locais e comerciais em tarefas reais. Documentação em português brasileiro.
 
-**Versão 0.1.0: apenas LOG-001 e importação manual.** Não há inferência Ollama, telemetria nem resultados reais nesta entrega. Os exemplos são demonstrativos e usam a resposta de referência, não um modelo.
+**Versão 0.2.0: LOG-001, importação manual e execução via Ollama.** Os exemplos versionados continuam demonstrativos. Nenhum resultado de modelo real foi obtido durante o desenvolvimento.
 
 ## Instalação
 
@@ -57,3 +57,23 @@ llm-lab import-response --case cases/LOG-001 --response cases/LOG-001/expected.j
 Os cinco casos planejados são LOG-001 (extração), PY-001 (script), SQL-001 (consulta), BUG-001 (correção) e INC-001 (incidente). Apenas LOG-001 está implementado.
 
 Não há licença concedida ainda: a escolha da licença open source está pendente antes da publicação. Nenhum peso de modelo é distribuído. Nenhuma operação GitHub é necessária para executar este piloto.
+
+
+## Executar no Ollama
+
+Com Ollama instalado e ativo no próprio homelab:
+
+```bash
+ollama pull qwen2.5:3b
+llm-lab run-ollama --case cases/LOG-001 --model qwen2.5:3b
+```
+
+Uma execução por comando, sem retentativas. O adaptador usa `/api/generate`, sem histórico e sem forçar formato JSON. Registra requisição, resposta completa da API, tempo de ponta a ponta e tokens/s de geração em `result.json`. `--host` permite selecionar outro servidor; o prompt será enviado ao endereço informado.
+
+Padrões explícitos: temperatura 0, seed 42, contexto 4096, limite de saída 1024 e timeout HTTP 600 segundos. Todos possuem opções CLI correspondentes (`llm-lab run-ollama --help`). O template e demais configurações do modelo instalado continuam valendo. Seed não garante determinismo. `keep_alive=0` pede descarregamento após a execução; o estado inicial de cache não é controlado.
+
+No ASUS com histórico de superaquecimento, faça uma única execução acompanhando o dashboard térmico existente. Este adaptador ainda não possui proteção térmica, coleta de sensores ou cancelamento confirmado no servidor. Timeout HTTP não comprova interrupção da inferência; não inicie outra execução até conferir o Ollama. Falhas de transporte retornam código 2, sem criar resultado; registre-as no diário da rodada e não as descarte da análise.
+
+Antes de comparar rodadas, registre `ollama --version`, `ollama list` (identificador do modelo), hardware e condições térmicas no diário. A identificação automática do digest do modelo está pendente. Tokens/s usa `eval_count / (eval_duration / 1e9)` e não inclui carregamento; o tempo total do cliente inclui a requisição. Não compare tokens/s entre tokenizadores como se fossem equivalentes.
+
+Referência da API: https://docs.ollama.com/api/generate

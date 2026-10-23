@@ -54,7 +54,7 @@ def evaluate(response, expected):
 
 
 def record(directory, response_path, participant, model, interface, configuration,
-           kind, output_root, elapsed_seconds=None):
+           kind, output_root, elapsed_seconds=None, inference=None):
     manifest, files, prompt, manifest_hash = load_case(directory)
     raw = Path(response_path).read_bytes()
     response = raw.decode("utf-8")
@@ -76,6 +76,11 @@ def record(directory, response_path, participant, model, interface, configuratio
                           "tokens_per_second": None, "cpu": None, "ram": None, "temperature": None,
                           "unavailable_reason": "Importação manual; sem telemetria de inferência"},
               "evaluation": evaluate(response, strict_json(files["expected"].decode()))}
+    if inference is not None:
+        result["inference"] = inference
+        result["metrics"].update(inference["metrics"])
+        result["metrics"]["elapsed_source"] = "perf_counter"
+        result["metrics"]["unavailable_reason"] = "CPU, RAM e temperatura não medidas"
     (target / "response.txt").write_bytes(raw)
     (target / "prompt.txt").write_text(prompt, encoding="utf-8")
     for key, content in files.items():
@@ -83,3 +88,4 @@ def record(directory, response_path, participant, model, interface, configuratio
     (target / "case.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     (target / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     return target, result
+
