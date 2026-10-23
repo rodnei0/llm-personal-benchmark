@@ -146,3 +146,19 @@ Saída fornecida pelo usuário:
 - CPU, RAM e temperatura automáticos continuam null.
 
 Mesmas verificações falharam nas duas execuções, mas igualdade das respostas ainda não foi confirmada. Até aqui: duas reprovações funcionais em duas execuções do mesmo caso, sem inferência de capacidade geral. Nenhum teste adicional proposto antes de comparar os registros existentes e deixar a máquina esfriar. Próxima verificação é somente leitura: hashes das respostas, igualdade do conteúdo e metadados de geração/configuração. Segundo result.json completo ainda não compartilhado.
+
+## Comparação confirmada entre as duas rodadas
+
+O usuário executou comparação local de response.txt: respostas byte a byte idênticas. Os dois result.json reportaram o mesmo SHA-256: 9e0fd29a0995c70133da41ff03d7fbae9e8b4adba511c99a3de49b1a5be13bf8. A resposta da segunda rodada compartilhada confirma os mesmos três erros descritos na análise: inclusão de Daniel com ip vazio, linha duplicada 3 classificada como inválida e omissão da linha malformada 6.
+
+| Campo | Rodada 1 | Rodada 2 |
+| --- | --- | --- |
+| Run ID | 20261023T234330Z-586fb62ab40a | 20261023T235153Z-6e3862608160 |
+| Tempo cliente | 26.408106920003775 s | 25.72697384400817 s |
+| Tokens/s | 10.919788993277352 | 11.309198944307221 |
+| Tokens gerados | 216 | 216 |
+| load_duration | 3500083821 ns | 3496190633 ns |
+| done_reason | stop | stop |
+| Temperatura observada | 86 °C | 86 °C |
+
+Ambas solicitaram temperature=0.0, seed=42, num_ctx=4096, num_predict=1024. Duas execuções apresentaram repetibilidade observada nesse caso/configuração; isso não garante determinismo em futuras execuções ou plataformas. Ambas terminaram normalmente sem esgotar o limite de saída. Não há evidência de que a temperatura causou os erros. Não foi proposta uma terceira execução idêntica neste checkpoint; próximo contraste útil é aplicar o mesmo prompt exportado a outro participante, em sessão independente, preservando o protocolo.
