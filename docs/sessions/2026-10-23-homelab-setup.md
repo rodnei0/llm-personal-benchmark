@@ -58,3 +58,16 @@ Saída fornecida pelo usuário em terminal com .venv ativo, na pasta local do pr
 - `llm-lab run-ollama --help`: executou e exibiu os parâmetros previstos.
 
 Isso confirma os testes e a disponibilidade da CLI nesse ambiente; não comprova inferência real, desempenho ou estabilidade térmica. O hash do commit local não foi compartilhado e segue pendente para rastreabilidade exata. Próximo passo proposto: instalar o Ollama e conferir serviço/versões antes de baixar modelos. A instalação do Ollama ainda não foi confirmada.
+
+## Etapa 4 — instalação do Ollama confirmada
+
+Saída fornecida pelo usuário:
+
+- Ollama cliente: 0.40.10.
+- Servidor: GET /api/version respondeu HTTP 200, com {"version":"0.40.10"}.
+- Serviço systemd: enabled e active (running), iniciado em 2026-10-23 às 19:25:54 -04:00.
+- Executável do serviço: /usr/local/bin/ollama serve.
+- Commit local informado: 213b7ffccbecb669ce70344517944ed802ec7fd4. Esse hash complementa a rastreabilidade que estava pendente nas etapas anteriores.
+- Log de instalação e hash do script não compartilhados; não registrados como verificados.
+
+As linhas do journal exibidas por systemctl estavam truncadas: não permitem concluir qual backend/GPU foi selecionado. Nenhum download de modelo ou inferência confirmado. Próximo passo proposto: aplicar configuração local do serviço, verificar variáveis e listener, depois baixar o modelo. O registro de um commit local não implica que futuras atualizações desta documentação já estejam no clone.
