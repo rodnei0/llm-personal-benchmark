@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "20261023T192722Z-bdf7c434241d",
+  "recorded_at": "2026-10-23T19:27:22.224948+00:00",
+  "data_kind": "demonstrative",
+  "protocol": "first_response",
+  "status": "completed",
+  "executor_version": "0.1.0",
+  "evaluator_version": "log_exact_v1",
+  "case": {
+    "id": "LOG-001",
+    "version": "1.0.0",
+    "category": "extracao_logs",
+    "difficulty": "simples",
+    "evaluator": "log_exact_v1",
+    "prompt": "prompt.md",
+    "input": "input.log",
+    "expected": "expected.json",
+    "criteria": [
+      "JSON estrito",
+      "eventos completos e exatos",
+      "ordem e deduplicação",
+      "linhas inválidas exatas"
+    ],
+    "data_kind": "synthetic"
+  },
+  "hashes": {
+    "manifest": "91b57b26d870f0c3086f659a828f0b282d1ff3c0f47c9d929e35cf444a5b8455",
+    "rendered_prompt": "dae6934e5bffbd6239a1383171164244e45e2d8e30b3856f53d0317790c215e4",
+    "response": "cec70bbf002c13ddcb273dde16e524cc373c274717bd98c8dde91e50fc8c7485",
+    "prompt": "150719ccce08b8289f64a02fb7a7e7f8731e43d06a6e510a8ee2448f8e3250e9",
+    "input": "3e2d223c8f2f5b9d88123be8baf8da1fdb3b1444fd8779c25cfb5cc4aa545a05",
+    "expected": "cec70bbf002c13ddcb273dde16e524cc373c274717bd98c8dde91e50fc8c7485"
+  },
+  "participant": {
+    "name": "reference-fixture",
+    "model_reported": "none",
+    "interface": "fixture",
+    "configuration": "Resposta de referência; sem inferência"
+  },
+  "attempt": 1,
+  "human_interventions": 0,
+  "metrics": {
+    "elapsed_seconds": null,
+    "elapsed_source": null,
+    "tokens_per_second": null,
+    "cpu": null,
+    "ram": null,
+    "temperature": null,
+    "unavailable_reason": "Importação manual; sem telemetria de inferência"
+  },
+  "evaluation": {
+    "passed": true,
+    "checks": {
+      "valid_json": true,
+      "schema": true,
+      "events_exact": true,
+      "invalid_lines_exact": true
+    },
+    "error": null
+  }
+}
