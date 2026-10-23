@@ -117,3 +117,18 @@ Saída da CLI compartilhada pelo usuário, sem acesso do assistente aos artefato
 Interpretação: resposta respeitou sintaxe e contrato estrutural, mas divergiu da referência em ambos os conjuntos de conteúdo avaliados. Não é falha de execução do comando. Resposta bruta e result.json completo ainda não compartilhados; causa exata das divergências não determinada. Não se infere throttling ou causalidade entre temperatura e erros. Este único caso não sustenta ranking ou conclusão geral sobre o modelo.
 
 Próximo passo proposto: deixar o equipamento retornar às condições iniciais e examinar response.txt e result.json antes de repetir carga. Preservar a primeira resposta sem edição. Nenhuma nova rodada solicitada nesta etapa; artefatos brutos ainda não publicados. Backend híbrido foi observado no teste curto anterior, não confirmado por ollama ps durante este benchmark. Configuração de serviço, digest completo e demais pendências continuam conforme registros anteriores.
+
+## Etapa 8 — configuração confirmada e retorno térmico após rodada 1
+
+Usuário informou retorno da temperatura observada a 52 °C. Sensor específico não identificado. Em seguida compartilhou:
+
+```text
+OLLAMA_HOST=127.0.0.1:11434
+OLLAMA_NO_CLOUD=1
+OLLAMA_NUM_PARALLEL=1
+OLLAMA_MAX_LOADED_MODELS=1
+```
+
+`ollama ps` exibiu somente o cabeçalho, confirmando ausência de modelos carregados naquele momento. Essas observações resolvem as pendências de configuração e descarregamento apontadas nos registros anteriores. Não demonstram retroativamente a alocação durante o benchmark.
+
+Próximo passo proposto: segunda execução independente do mesmo LOG-001, sem alterar prompt, referência ou parâmetros, após resfriamento e sob observação térmica. Preservar todas as rodadas. Cada registro usa attempt=1 porque representa primeira resposta sem correções em uma requisição independente; o número da repetição deve ser registrado no diário. A repetição ainda não foi executada/confirmada.
