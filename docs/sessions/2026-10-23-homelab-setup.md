@@ -132,3 +132,17 @@ OLLAMA_MAX_LOADED_MODELS=1
 `ollama ps` exibiu somente o cabeçalho, confirmando ausência de modelos carregados naquele momento. Essas observações resolvem as pendências de configuração e descarregamento apontadas nos registros anteriores. Não demonstram retroativamente a alocação durante o benchmark.
 
 Próximo passo proposto: segunda execução independente do mesmo LOG-001, sem alterar prompt, referência ou parâmetros, após resfriamento e sob observação térmica. Preservar todas as rodadas. Cada registro usa attempt=1 porque representa primeira resposta sem correções em uma requisição independente; o número da repetição deve ser registrado no diário. A repetição ainda não foi executada/confirmada.
+
+## Etapa 9 — segunda execução independente do LOG-001
+
+Saída fornecida pelo usuário:
+
+- Comando: llm-lab run-ollama --case cases/LOG-001 --model qwen2.5:3b.
+- Run ID: 20261023T235153Z-6e3862608160.
+- Pasta local: results/runs/20261023T235153Z-6e3862608160.
+- Avaliação: passed=false, valid_json=true, schema=true, events_exact=false, invalid_lines_exact=false; error=null.
+- Tempo cliente: 25.72697384400817 s; geração: 11.309198944307221 tokens/s.
+- Temperatura relatada: 86 °C observados; sensor e série temporal não fornecidos.
+- CPU, RAM e temperatura automáticos continuam null.
+
+Mesmas verificações falharam nas duas execuções, mas igualdade das respostas ainda não foi confirmada. Até aqui: duas reprovações funcionais em duas execuções do mesmo caso, sem inferência de capacidade geral. Nenhum teste adicional proposto antes de comparar os registros existentes e deixar a máquina esfriar. Próxima verificação é somente leitura: hashes das respostas, igualdade do conteúdo e metadados de geração/configuração. Segundo result.json completo ainda não compartilhado.
