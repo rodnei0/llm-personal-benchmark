@@ -48,3 +48,13 @@ Saídas enviadas pelo usuário após as instruções de preparação (não foi c
 - intel_pstate/no_turbo: 1 (turbo desativado).
 
 Decisão: manter configurações térmicas e driver existentes. Aceleração Ollama ainda não testada; não inferir suporte efetivo apenas de nvidia-smi. Próximo passo: clonar a branch documentada, criar venv com Python 3.14.4 e executar os testes. Nenhum teste de modelo nesta etapa. Este complemento atualiza as pendências históricas acima; ventilação, condições de energia e estabilidade sob carga seguem não verificadas.
+
+## Etapa 3 — projeto instalado e testes confirmados no homelab
+
+Saída fornecida pelo usuário em terminal com .venv ativo, na pasta local do projeto:
+
+- Python: 3.14.4.
+- `python -m pytest -q`: 30 passed in 3.65s.
+- `llm-lab run-ollama --help`: executou e exibiu os parâmetros previstos.
+
+Isso confirma os testes e a disponibilidade da CLI nesse ambiente; não comprova inferência real, desempenho ou estabilidade térmica. O hash do commit local não foi compartilhado e segue pendente para rastreabilidade exata. Próximo passo proposto: instalar o Ollama e conferir serviço/versões antes de baixar modelos. A instalação do Ollama ainda não foi confirmada.
