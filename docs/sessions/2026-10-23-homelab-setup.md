@@ -71,3 +71,17 @@ Saída fornecida pelo usuário:
 - Log de instalação e hash do script não compartilhados; não registrados como verificados.
 
 As linhas do journal exibidas por systemctl estavam truncadas: não permitem concluir qual backend/GPU foi selecionado. Nenhum download de modelo ou inferência confirmado. Próximo passo proposto: aplicar configuração local do serviço, verificar variáveis e listener, depois baixar o modelo. O registro de um commit local não implica que futuras atualizações desta documentação já estejam no clone.
+
+## Etapa 5 — API local e modelo baixado
+
+Saídas fornecidas pelo usuário ao longo da configuração:
+
+- Listener confirmado em 127.0.0.1:11434 por ss; API respondeu versão 0.40.10 após o reinício.
+- OLLAMA_HOST=127.0.0.1:11434 visível em systemctl show.
+- Saída compartilhada de Environment ainda truncada após OLLA: OLLAMA_NO_CLOUD, OLLAMA_NUM_PARALLEL e OLLAMA_MAX_LOADED_MODELS ainda não confirmadas individualmente.
+- ollama list: qwen2.5:3b, identificador abreviado 357c53fb659c, tamanho 1.9 GB. Digest completo ainda não compartilhado.
+- ollama show: arquitetura qwen2; 3.1B parâmetros; quantização Q4_K_M; contexto declarado do modelo 32768; embedding length 2048; template go_template; capabilities completion e tools.
+- System do modelo: You are Qwen, created by Alibaba Cloud. You are a helpful assistant.
+- Licença exibida: Qwen RESEARCH LICENSE AGREEMENT, data de lançamento September 19, 2024.
+
+O contexto declarado do modelo não é o contexto configurado no experimento: o piloto solicita num_ctx=4096. A capacidade tools não significa ferramentas habilitadas no teste. Próximo passo: conferir as variáveis sem truncamento e executar uma resposta curta acompanhando sensores. Nenhuma inferência ou backend efetivo confirmado até este registro.
