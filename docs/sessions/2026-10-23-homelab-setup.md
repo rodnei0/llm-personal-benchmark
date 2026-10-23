@@ -100,3 +100,20 @@ Executada pelo usuário em 2026-10-23; API registrou created_at=2026-10-23T23:40
 - Usuário executou ollama stop qwen2.5:3b; comando retornou sem mensagem de erro. Estado descarregado ainda não confirmado por ollama ps posterior.
 
 Conclusão limitada: inferência local funcional e backend híbrido observado. Este é um teste de funcionamento, não um resultado LOG-001. Nenhum benchmark funcional executado até esta etapa. Variáveis de serviço além de OLLAMA_HOST continuam sem saída completa compartilhada; digest completo do modelo ainda pendente. Próximo passo proposto: confirmar descarregamento e retorno térmico às condições iniciais, conferir variáveis e executar uma única rodada LOG-001 com monitoramento.
+
+## Etapa 7 — primeiro benchmark LOG-001 real
+
+Saída da CLI compartilhada pelo usuário, sem acesso do assistente aos artefatos locais:
+
+- Comando: llm-lab run-ollama --case cases/LOG-001 --model qwen2.5:3b.
+- Run ID: 20261023T234330Z-586fb62ab40a.
+- Pasta local: results/runs/20261023T234330Z-586fb62ab40a.
+- Avaliação: passed=false; valid_json=true; schema=true; events_exact=false; invalid_lines_exact=false; error=null.
+- Tempo de ponta a ponta medido pelo cliente: 26.408106920003775 s.
+- Velocidade de geração reportada/calculada: 10.919788993277352 tokens/s.
+- CPU, RAM e temperatura no registro automático: null; sem coleta pelo executor.
+- Temperatura observada e relatada pelo usuário: 86 °C. Sensor específico e série temporal não fornecidos; observação manual externa ao resultado automático.
+
+Interpretação: resposta respeitou sintaxe e contrato estrutural, mas divergiu da referência em ambos os conjuntos de conteúdo avaliados. Não é falha de execução do comando. Resposta bruta e result.json completo ainda não compartilhados; causa exata das divergências não determinada. Não se infere throttling ou causalidade entre temperatura e erros. Este único caso não sustenta ranking ou conclusão geral sobre o modelo.
+
+Próximo passo proposto: deixar o equipamento retornar às condições iniciais e examinar response.txt e result.json antes de repetir carga. Preservar a primeira resposta sem edição. Nenhuma nova rodada solicitada nesta etapa; artefatos brutos ainda não publicados. Backend híbrido foi observado no teste curto anterior, não confirmado por ollama ps durante este benchmark. Configuração de serviço, digest completo e demais pendências continuam conforme registros anteriores.
