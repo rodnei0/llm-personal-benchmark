@@ -31,3 +31,20 @@ Próxima etapa proposta: instalar ferramentas básicas com apt e verificar senso
 - Execução dos comandos de inventário: usuário.
 - Versões Git, dependências do projeto e commit local: pendentes; projeto ainda não instalado no homelab.
 - Temperaturas, backend CPU/GPU, turbo e condições de ventilação: pendentes de observação.
+
+## Etapa 2 — ferramentas, sensores e GPU observados
+
+Saídas enviadas pelo usuário após as instruções de preparação (não foi compartilhado o log do apt; não se presume instalação nova de cada pacote).
+
+- Git: 2.53.0.
+- Sensores: coretemp, PCH, Wi-Fi, ASUS e ACPI respondendo.
+- CPU Package: 55 °C; núcleos 50–53 °C nessa amostra. Carga/repouso não comprovados por medição de utilização.
+- Ventoinhas CPU/GPU: ambas 1700 RPM reportadas.
+- GPU integrada: Intel HD Graphics 530.
+- GPU dedicada: NVIDIA GeForce GTX 960M; 2048 MiB de VRAM.
+- Driver NVIDIA: 580.178.04; nvidia-smi operacional.
+- GPU na amostra: 52 °C, 0% utilização e 4 MiB ocupados.
+- Cabeçalho do nvidia-smi reporta CUDA Version 13.0: isso não comprova instalação do CUDA Toolkit nem compatibilidade de um backend específico.
+- intel_pstate/no_turbo: 1 (turbo desativado).
+
+Decisão: manter configurações térmicas e driver existentes. Aceleração Ollama ainda não testada; não inferir suporte efetivo apenas de nvidia-smi. Próximo passo: clonar a branch documentada, criar venv com Python 3.14.4 e executar os testes. Nenhum teste de modelo nesta etapa. Este complemento atualiza as pendências históricas acima; ventilação, condições de energia e estabilidade sob carga seguem não verificadas.
