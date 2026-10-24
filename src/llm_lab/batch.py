@@ -47,7 +47,7 @@ def _save(root, data):
     (root / 'summary.md').write_text('\n'.join(lines) + '\n')
 
 
-def run_batch(directory, models, *, repetitions=1, cooldown=180,
+def run_batch(directory, models, *, repetitions=1, cooldown=30,
               output_root='results/runs/batches', temperature_check=True,
               max_start_temp=60, max_cooldown_wait=900,
               max_gpu_temp=60, max_cpu_usage=20, max_gpu_usage=10,
@@ -56,6 +56,8 @@ def run_batch(directory, models, *, repetitions=1, cooldown=180,
         raise ValueError('Informe modelos não vazios e sem duplicatas; use --repetitions para repetir')
     if type(repetitions) is not int or repetitions < 1:
         raise ValueError('Repetições devem ser positivas')
+    if math.isfinite(cooldown) and cooldown < 30:
+        raise ValueError('O intervalo mínimo entre rodadas é de 30 segundos')
     if any(not math.isfinite(v) or v < 0 for v in (cooldown, max_cooldown_wait)) or not math.isfinite(max_start_temp):
         raise ValueError('Intervalos devem ser finitos e não negativos; temperatura deve ser finita')
     if any(not math.isfinite(v) for v in (max_gpu_temp, max_cpu_usage, max_gpu_usage, sample_interval, stable_seconds)) or sample_interval < 0.1 or stable_seconds < 0 or not 0 <= max_cpu_usage <= 100 or not 0 <= max_gpu_usage <= 100:

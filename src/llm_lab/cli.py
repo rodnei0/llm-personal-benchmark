@@ -44,7 +44,7 @@ def main():
     batch.add_argument("--case", required=True)
     batch.add_argument("--models", nargs="+", required=True)
     batch.add_argument("--repetitions", type=int, default=1)
-    batch.add_argument("--cooldown", type=nonnegative, default=180)
+    batch.add_argument("--cooldown", type=nonnegative, default=30, help="Pausa mínima entre rodadas, pelo menos 30 s (padrão: 30)")
     batch.add_argument("--max-start-temp", type=float, default=60)
     batch.add_argument("--max-cooldown-wait", type=nonnegative, default=900)
     batch.add_argument("--max-gpu-temp", type=float, default=60)

@@ -25,7 +25,7 @@ Comece com dois modelos que já foram executados no equipamento, uma geração p
 llm-lab batch-ollama \
   --case cases/LOG-001-explicit \
   --models qwen2.5:3b gemma3:1b \
-  --cooldown 180 \
+  --cooldown 30 \
   --repetitions 1 \
   --output-root results/published/batches
 ```
@@ -35,7 +35,7 @@ Para o prompt original, troque somente --case por cases/LOG-001; use outro lote.
 ## Como decide quando iniciar
 
 1. A primeira geração espera também pelas condições de recuperação; não tem pausa mínima inicial.
-2. Após cada geração, aguarda pelo menos --cooldown segundos (padrão 180).
+2. Após cada geração, aguarda pelo menos --cooldown segundos (padrão 30; valores abaixo de 30 são rejeitados).
 3. Aguarda CPU <=60 °C, todas as GPUs NVIDIA consultadas <=60 °C, uso global de CPU <=20% e uso de cada GPU <=10%.
 4. Exige que as condições permaneçam atendidas por --stable-seconds (10 segundos por padrão), segundo as amostras disponíveis.
 5. Se não atingir as condições dentro de --max-cooldown-wait (900 segundos após a pausa mínima), encerra e registra a falha. Dados necessários ausentes também impedem a liberação.
@@ -105,4 +105,4 @@ O programa não faz commit/push. Compartilhe o hash ou caminho do lote; a análi
 
 ## Validação de desenvolvimento
 
-**49 testes passaram em Python 3.12.14.** Testes usam servidor HTTP simulado e amostras controladas. A validação automatizada inclui ordem sequencial, intervalos, resultados aprovados/reprovados, snapshots, digests, falhas sem retentativa, interrupção, barreira de recuperação e GPU indisponível. Não é evidência de funcionamento dos sensores do homelab; esse é o próximo teste de campo. O ramo de execução única continua disponível.
+**51 testes passaram em Python 3.12.14.** Testes usam servidor HTTP simulado e amostras controladas. A validação automatizada inclui ordem sequencial, intervalos, resultados aprovados/reprovados, snapshots, digests, falhas sem retentativa, interrupção, barreira de recuperação e GPU indisponível. Não é evidência de funcionamento dos sensores do homelab; esse é o próximo teste de campo. O ramo de execução única continua disponível.

@@ -40,7 +40,7 @@ def test_sequential_runs_cooldown_and_artifacts(api, tmp_path):
         root, data = run_batch(CASE, ['a:1','b:1'], host=host, output_root=tmp_path, repetitions=2, temperature_check=False)
     assert [r['model'] for r in state['requests']] == ['a:1','b:1','a:1','b:1']
     assert sleep.call_count == 3
-    sleep.assert_called_with(180)
+    sleep.assert_called_with(30)
     assert [r['evaluation']['passed'] for r in data['runs']] == [True,False,True,False]
     assert [r['repetition'] for r in data['runs']] == [1,1,2,2]
     assert json.loads((root/'batch.json').read_text()) == data
@@ -81,7 +81,7 @@ def test_missing_model_preflight(api,tmp_path):
     assert not state['requests']
 
 
-@pytest.mark.parametrize('kwargs',[{'repetitions':0},{'cooldown':float('nan')},{'timeout':-1},{'num_ctx':0},{'host':'file:///tmp/model'},{'sample_interval':0}])
+@pytest.mark.parametrize('kwargs',[{'repetitions':0},{'cooldown':float('nan')},{'cooldown':0},{'cooldown':29},{'timeout':-1},{'num_ctx':0},{'host':'file:///tmp/model'},{'sample_interval':0}])
 def test_invalid_settings(tmp_path,kwargs):
     with pytest.raises(ValueError):
         run_batch(CASE,['a:1'],output_root=tmp_path,temperature_check=False,**kwargs)
