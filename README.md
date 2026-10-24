@@ -2,7 +2,7 @@
 
 Laboratório pessoal e aberto para avaliar a utilidade de modelos locais e comerciais em tarefas reais. Documentação em português brasileiro.
 
-**Versão 0.2.0: LOG-001, importação manual e execução via Ollama.** Os exemplos versionados continuam demonstrativos. Nenhum resultado de modelo real foi obtido durante o desenvolvimento.
+**Versão 0.3.0: LOG-001, importação manual, execução única e lotes sequenciais via Ollama.** Os exemplos versionados continuam demonstrativos. Nenhum resultado de modelo real foi obtido durante o desenvolvimento.
 
 ## Comece aqui
 
@@ -83,3 +83,7 @@ No ASUS com histórico de superaquecimento, faça uma única execução acompanh
 Antes de comparar rodadas, registre `ollama --version`, `ollama list` (identificador do modelo), hardware e condições térmicas no diário. A identificação automática do digest do modelo está pendente. Tokens/s usa `eval_count / (eval_duration / 1e9)` e não inclui carregamento; o tempo total do cliente inclui a requisição. Não compare tokens/s entre tokenizadores como se fossem equivalentes.
 
 Referência da API: https://docs.ollama.com/api/generate
+
+## Lotes com telemetria e intervalo adaptativo
+
+Use `llm-lab batch-ollama` para testar vários modelos, um por vez, com pausa mínima e espera por recuperação de CPU/GPU. Salva respostas, avaliação, metadados e séries de CPU/RAM/GPU/temperatura, com resumo JSON/Markdown. Veja o [guia de lotes](docs/batch-ollama.md), incluindo publicação dos artefatos para análise. A barreira controla o início de rodadas; não é corte térmico durante inferência. O primeiro lote no homelab ainda requer validação acompanhada.
