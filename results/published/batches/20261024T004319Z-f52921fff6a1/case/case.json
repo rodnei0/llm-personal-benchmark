@@ -1,0 +1,17 @@
+{
+  "id": "LOG-001",
+  "version": "1.0.0",
+  "category": "extracao_logs",
+  "difficulty": "simples",
+  "evaluator": "log_exact_v1",
+  "prompt": "prompt.md",
+  "input": "input.log",
+  "expected": "expected.json",
+  "criteria": [
+    "JSON estrito",
+    "eventos completos e exatos",
+    "ordem e deduplicação",
+    "linhas inválidas exatas"
+  ],
+  "data_kind": "synthetic"
+}

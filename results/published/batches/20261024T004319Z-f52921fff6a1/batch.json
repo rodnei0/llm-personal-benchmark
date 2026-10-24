@@ -1,0 +1,380 @@
+{
+  "schema_version": "1.0.0",
+  "status": "completed",
+  "started_at": "2026-10-24T00:43:19.678041+00:00",
+  "case": {
+    "id": "LOG-001",
+    "version": "1.0.0",
+    "category": "extracao_logs",
+    "difficulty": "simples",
+    "evaluator": "log_exact_v1",
+    "prompt": "prompt.md",
+    "input": "input.log",
+    "expected": "expected.json",
+    "criteria": [
+      "JSON estrito",
+      "eventos completos e exatos",
+      "ordem e deduplicação",
+      "linhas inválidas exatas"
+    ],
+    "data_kind": "synthetic"
+  },
+  "manifest_sha256": "91b57b26d870f0c3086f659a828f0b282d1ff3c0f47c9d929e35cf444a5b8455",
+  "prompt_sha256": "dae6934e5bffbd6239a1383171164244e45e2d8e30b3856f53d0317790c215e4",
+  "git_commit": "d8dd7b69dd54b579d0af278cb496032c2370cd69",
+  "git_status": "?? prompt-log-001.txt\n?? reposta-comercial.txt\n?? resposta-claude.txt\n?? results/published/",
+  "models": [
+    "qwen2.5:3b",
+    "qwen2.5-coder:3b-instruct-q4_K_M",
+    "gemma3:1b"
+  ],
+  "repetitions": 1,
+  "options": {
+    "host": "http://127.0.0.1:11434",
+    "timeout": 600,
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1024
+  },
+  "cooldown_seconds": 180.0,
+  "temperature_check": true,
+  "max_start_temp": 60,
+  "max_cooldown_wait": 900,
+  "temperature_source": "max coretemp temp*_input",
+  "max_gpu_temp": 60,
+  "max_cpu_usage": 20,
+  "max_gpu_usage": 10,
+  "sample_interval": 2,
+  "stable_seconds": 10,
+  "telemetry_file": "telemetry.jsonl",
+  "runs": [
+    {
+      "model": "qwen2.5:3b",
+      "repetition": 1,
+      "status": "completed",
+      "telemetry_before": {
+        "at": "2026-10-24T00:43:31.887093+00:00",
+        "errors": [],
+        "cpu_percent": 2.4721878862793534,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 3768647680,
+        "cpu_temp_c": 51.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 49.0,
+            "utilization_percent": 0.0,
+            "memory_used_mib": 4.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "recovery",
+        "run_index": 0
+      },
+      "path": "runs/20261024T004359Z-37c40a651ba0",
+      "evaluation": {
+        "passed": false,
+        "checks": {
+          "valid_json": true,
+          "schema": true,
+          "events_exact": false,
+          "invalid_lines_exact": false
+        },
+        "error": null
+      },
+      "metrics": {
+        "elapsed_seconds": 25.757135040999856,
+        "elapsed_source": "perf_counter",
+        "tokens_per_second": 11.24361807553192,
+        "cpu": null,
+        "ram": null,
+        "temperature": null,
+        "unavailable_reason": "CPU, RAM e temperatura não medidas"
+      },
+      "response_sha256": "9e0fd29a0995c70133da41ff03d7fbae9e8b4adba511c99a3de49b1a5be13bf8",
+      "done_reason": "stop",
+      "eval_count": 216,
+      "telemetry_after": {
+        "at": "2026-10-24T00:43:58.301385+00:00",
+        "errors": [],
+        "cpu_percent": 52.22496909765142,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 4392431616,
+        "cpu_temp_c": 86.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 65.0,
+            "utilization_percent": 38.0,
+            "memory_used_mib": 1035.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "inference",
+        "run_index": 0
+      },
+      "telemetry_summary": {
+        "sample_count": 13,
+        "cpu_peak_percent": 64.46229913473425,
+        "cpu_peak_temp_c": 86.0,
+        "ram_peak_used_bytes": 4574572544,
+        "gpu_peak_temp_c": 74.0,
+        "gpu_peak_memory_used_mib": 1035.0,
+        "gpu_peak_percent": 100.0
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b-instruct-q4_K_M",
+      "repetition": 1,
+      "status": "completed",
+      "telemetry_before": {
+        "at": "2026-10-24T00:47:07.960369+00:00",
+        "errors": [],
+        "cpu_percent": 2.318486882245274,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 3774713856,
+        "cpu_temp_c": 51.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 50.0,
+            "utilization_percent": 0.0,
+            "memory_used_mib": 4.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "recovery",
+        "run_index": 1
+      },
+      "path": "runs/20261024T004729Z-3473f6371159",
+      "evaluation": {
+        "passed": false,
+        "checks": {
+          "valid_json": true,
+          "schema": true,
+          "events_exact": true,
+          "invalid_lines_exact": false
+        },
+        "error": null
+      },
+      "metrics": {
+        "elapsed_seconds": 20.301303208005265,
+        "elapsed_source": "perf_counter",
+        "tokens_per_second": 11.312471481624312,
+        "cpu": null,
+        "ram": null,
+        "temperature": null,
+        "unavailable_reason": "CPU, RAM e temperatura não medidas"
+      },
+      "response_sha256": "11793ffcda090e26df0c58bc8c5d6c77a9f0403e4081fe549df3e5edb7927d8a",
+      "done_reason": "stop",
+      "eval_count": 155,
+      "telemetry_after": {
+        "at": "2026-10-24T00:47:28.278579+00:00",
+        "errors": [],
+        "cpu_percent": 52.40443896424167,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 4263890944,
+        "cpu_temp_c": 85.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 64.0,
+            "utilization_percent": 35.0,
+            "memory_used_mib": 1030.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "inference",
+        "run_index": 1
+      },
+      "telemetry_summary": {
+        "sample_count": 10,
+        "cpu_peak_percent": 53.547193090684765,
+        "cpu_peak_temp_c": 85.0,
+        "ram_peak_used_bytes": 4318171136,
+        "gpu_peak_temp_c": 75.0,
+        "gpu_peak_memory_used_mib": 1030.0,
+        "gpu_peak_percent": 100.0
+      }
+    },
+    {
+      "model": "gemma3:1b",
+      "repetition": 1,
+      "status": "completed",
+      "telemetry_before": {
+        "at": "2026-10-24T00:50:37.894145+00:00",
+        "errors": [],
+        "cpu_percent": 1.8529956763434163,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 3777839104,
+        "cpu_temp_c": 52.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 50.0,
+            "utilization_percent": 0.0,
+            "memory_used_mib": 4.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "recovery",
+        "run_index": 2
+      },
+      "path": "runs/20261024T005057Z-d6749ec762c0",
+      "evaluation": {
+        "passed": false,
+        "checks": {
+          "valid_json": false
+        },
+        "error": "Expecting value: line 1 column 1 (char 0)"
+      },
+      "metrics": {
+        "elapsed_seconds": 17.965000494004926,
+        "elapsed_source": "perf_counter",
+        "tokens_per_second": 28.667894619556172,
+        "cpu": null,
+        "ram": null,
+        "temperature": null,
+        "unavailable_reason": "CPU, RAM e temperatura não medidas"
+      },
+      "response_sha256": "544b8309662323a343121c24ffc8585e116dc5352d9d9758d9070e9c04f84d17",
+      "done_reason": "stop",
+      "eval_count": 419,
+      "telemetry_after": {
+        "at": "2026-10-24T00:50:56.143777+00:00",
+        "errors": [],
+        "cpu_percent": 33.60098826436072,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 4145471488,
+        "cpu_temp_c": 77.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 79.0,
+            "utilization_percent": 96.0,
+            "memory_used_mib": 947.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "inference",
+        "run_index": 2
+      },
+      "telemetry_summary": {
+        "sample_count": 9,
+        "cpu_peak_percent": 33.9517625231911,
+        "cpu_peak_temp_c": 77.0,
+        "ram_peak_used_bytes": 4176965632,
+        "gpu_peak_temp_c": 79.0,
+        "gpu_peak_memory_used_mib": 947.0,
+        "gpu_peak_percent": 96.0
+      }
+    }
+  ],
+  "ollama_version": {
+    "version": "0.40.10"
+  },
+  "ollama_tags": {
+    "models": [
+      {
+        "name": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "model": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "modified_at": "2026-10-23T20:39:54.844351432-04:00",
+        "size": 1929912626,
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "gemma3:4b",
+        "model": "gemma3:4b",
+        "modified_at": "2026-10-23T20:16:56.189891804-04:00",
+        "size": 3350272403,
+        "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3",
+            "clip"
+          ],
+          "parameter_size": "3.9B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 131072,
+          "embedding_length": 2560,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion",
+          "vision"
+        ]
+      },
+      {
+        "name": "gemma3:1b",
+        "model": "gemma3:1b",
+        "modified_at": "2026-10-23T20:10:25.769079424-04:00",
+        "size": 806067407,
+        "digest": "97558784bdc9175075a72655bf360b15da17df6b3b9e5182af9f8c0c8e58ba7c",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:1b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3"
+          ],
+          "parameter_size": "999.89M",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 1152,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion"
+        ]
+      },
+      {
+        "name": "qwen2.5:3b",
+        "model": "qwen2.5:3b",
+        "modified_at": "2026-10-23T19:30:03.58209086-04:00",
+        "size": 1929912432,
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      }
+    ]
+  },
+  "finished_at": "2026-10-24T00:50:57.881785+00:00"
+}
