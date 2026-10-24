@@ -219,3 +219,18 @@ Saída da CLI fornecida pelo usuário:
 - CPU, RAM e temperatura no registro automático: null.
 
 Resposta bruta e metadados completos ainda não compartilhados. Não inferir Markdown, resposta vazia ou truncamento apenas a partir da mensagem do parser. Detalhes locais de ollama show, quantização, digest e backend durante esta execução também pendentes. Próximo passo proposto: ler resposta e metadados salvos, sem nova inferência. Comparações de velocidade entre modelos/tokenizadores não representam equivalência de trabalho ou qualidade; temperatura manual não é um ensaio térmico controlado.
+
+## Etapa 14 — primeira execução Gemma 3 4B
+
+Saída fornecida pelo usuário:
+
+- Comando: llm-lab run-ollama --case cases/LOG-001 --model gemma3:4b.
+- Run ID: 20261024T001821Z-9bd58cca0dc5 (UTC; 2026-10-23 20:18:21 America/Cuiaba).
+- passed=false; checks={valid_json:false}; error=Expecting value: line 1 column 1 (char 0).
+- Tempo cliente: 37.10227441099414 s; geração: 8.673467405248267 tokens/s.
+- Temperatura relatada: 90 °C observados; sensor e série temporal não fornecidos.
+- CPU, RAM e temperatura automáticos: null.
+
+Resposta bruta e metadados de geração ainda não compartilhados. O erro não comprova Markdown nem falha semântica. Não atribuir o resultado à temperatura. Quantização/digest locais, backend e condições iniciais desta rodada pendentes.
+
+Orientação neste checkpoint: pausar inferências e deixar o equipamento esfriar; examinar somente response.txt/result.json já salvos. Não iniciar lotes ou modelos maiores antes de revisar condições térmicas. Não se trata de um limite universal de segurança: a decisão considera o histórico de desligamento térmico do equipamento e a observação desta sessão.
