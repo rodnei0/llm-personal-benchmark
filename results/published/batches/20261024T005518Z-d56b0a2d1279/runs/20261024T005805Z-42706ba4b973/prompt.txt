@@ -1,0 +1,26 @@
+Extraia falhas de autenticação do log abaixo.
+
+Contrato de saída:
+- Responda somente com um objeto JSON válido contendo exatamente "events" e "invalid_lines".
+- Não use cercas Markdown, comentários ou explicações.
+- "events" é uma lista de objetos com exatamente timestamp, host, service, user e ip. Todos os valores devem ser strings copiadas da própria linha.
+- "invalid_lines" é uma lista de números inteiros das linhas inválidas, contando a primeira linha do LOG como 1.
+
+Aplique estas regras a cada linha, na ordem:
+1. Se outcome=success, ignore a linha: ela não entra em nenhuma lista.
+2. Se outcome=failure e a linha estiver malformada ou faltar qualquer campo obrigatório, inclua o número em invalid_lines e NÃO crie um evento.
+3. Nunca complete um campo ausente com "", null, valores de outra linha ou suposições.
+4. Uma falha completa entra em events somente na primeira ocorrência da linha completa idêntica. Uma duplicata completa é apenas ignorada: duplicação NÃO torna a linha inválida.
+5. Preserve a ordem original dos eventos e dos números de linhas inválidas.
+
+Confira silenciosamente o contrato antes de responder. Não mostre a conferência.
+
+LOG:
+2026-01-15T10:00:00Z host=lab-a service=ssh outcome=success user=ana ip=192.0.2.10
+2026-01-15T10:01:00Z host=lab-a service=ssh outcome=failure user=bruno ip=192.0.2.11
+2026-01-15T10:01:00Z host=lab-a service=ssh outcome=failure user=bruno ip=192.0.2.11
+2026-01-15T10:02:00Z host=lab-b service=vpn outcome=failure user=carla ip=2001:db8::7
+2026-01-15T10:03:00Z host=lab-b service=vpn outcome=failure user=daniel
+LINHA MALFORMADA outcome=failure
+2026-01-15T10:04:00Z host=lab-b service=vpn outcome=success user=carla ip=2001:db8::7
+

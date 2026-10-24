@@ -1,0 +1,1 @@
+Explique para um estudante do ensino médio, em português, em até 150 palavras. Não use ferramentas nem pesquisa externa. Por que há estações do ano e por que elas são opostas nos hemisférios Norte e Sul?

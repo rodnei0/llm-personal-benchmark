@@ -18,6 +18,7 @@ Aprovação funcional = JSON válido + contrato válido + eventos exatos + linha
 
 ## Métricas
 
-Tempo manual é opcional e declarado, sem inferência de tokens. CPU, RAM, temperatura e taxa de geração são nulos porque não medidos. Clareza, segurança e confiabilidade não recebem notas artificiais nesta etapa; o avaliador comprova apenas o contrato de extração. Resultado demonstrativo não deve integrar comparações reais.
+Tempo manual é opcional e declarado, sem inferência de tokens. Na importação manual, CPU, RAM, temperatura e taxa de geração são nulos. No Ollama, o cliente mede tempo total com perf_counter e calcula taxa de geração com eval_count/eval_duration da API; CPU, RAM e temperatura continuam nulos. Respostas com done=true, inclusive truncadas por limite de saída, são avaliadas sem edição. Falhas de transporte exigem registro manual no diário; não representam reprovação funcional. Clareza, segurança e confiabilidade não recebem notas artificiais nesta etapa; o avaliador comprova apenas o contrato de extração. Resultado demonstrativo não deve integrar comparações reais.
 
 Versão do executor, avaliador, caso, configuração declarada, hashes e snapshots permitem rastrear o experimento. A identidade exata de modelos comerciais e parâmetros ocultos não pode ser garantida pelo importador. Os metadados manuais dependem do responsável pelo experimento.
+

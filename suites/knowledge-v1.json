@@ -1,0 +1,18 @@
+{
+  "id": "knowledge-reasoning-v1",
+  "version": "1.0.0",
+  "cases": [
+    "cases/SCI-001",
+    "cases/SCI-002",
+    "cases/SCI-003",
+    "cases/SCI-004",
+    "cases/MATH-001",
+    "cases/MATH-002",
+    "cases/PHYS-001",
+    "cases/PHYS-002",
+    "cases/REASON-001",
+    "cases/REASON-002",
+    "cases/REASON-003",
+    "cases/REASON-004"
+  ]
+}

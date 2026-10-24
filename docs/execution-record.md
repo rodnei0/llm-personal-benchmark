@@ -12,3 +12,8 @@ Executado:
 Os executáveis foram instalados fora do PATH deste workspace; por isso foi usada a forma `python -m llm_lab.cli`. Na instalação recomendada com venv, `llm-lab` estará disponível após ativação.
 
 Nenhum modelo local ou comercial foi avaliado. Sem acesso ao homelab, sem telemetria, sem custo de API. Não houve inicialização Git, commit, push nem alteração externa no GitHub. Este pacote não contém a licença open source definitiva.
+
+
+## Validação do adaptador 0.2.0 — 2026-10-23
+
+Python 3.12.14. `python -m pytest -q`: 30 testes passaram. Servidor HTTP local simulado validou payload sem referência, preservação da resposta, cálculo de velocidade, saída incorreta, resposta incompleta, erro HTTP sem retentativa e parâmetros inválidos. Não houve execução de modelo real ou acesso ao homelab. Os resultados simulados ficam em diretórios temporários dos testes.

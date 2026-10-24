@@ -1,0 +1,1 @@
+Um corpo parte do repouso e cai livremente durante 2 s, antes de tocar o solo. Adote g=10 m/s² constante e despreze resistência do ar. Qual distância percorre? Responda somente JSON puro no formato {"answer": numero, "unit": "m"}, sem Markdown ou explicação.

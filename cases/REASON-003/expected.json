@@ -1,0 +1,24 @@
+{
+  "review_mode": "human",
+  "required_concepts": [
+    "Reconhecer que não há área única",
+    "Dois pares de lados positivos cuja soma seja 10 cm",
+    "Calcular áreas diferentes consistentes com os pares"
+  ],
+  "major_errors": [
+    "Fornecer uma área única sem hipótese adicional",
+    "Exemplos que violem o perímetro"
+  ],
+  "reference_explanation": "Exemplo: 1×9 tem área 9 cm²; 2×8 tem área 16 cm². Ambos têm perímetro 20 cm. Aceitar quaisquer dois exemplos corretos.",
+  "sources": [],
+  "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+  "review_fields": [
+    "reviewer",
+    "reviewed_at",
+    "criteria_evidence",
+    "major_errors_observed",
+    "passed",
+    "notes"
+  ],
+  "status": "not_yet_reviewed"
+}

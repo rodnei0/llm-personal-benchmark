@@ -1,0 +1,27 @@
+{
+  "review_mode": "human",
+  "required_concepts": [
+    "Luz solar contém diferentes comprimentos de onda",
+    "Moléculas atmosféricas espalham luz; comprimentos menores da luz visível são espalhados mais intensamente que os maiores",
+    "Luz espalhada de várias direções chega aos olhos e produz a aparência azul"
+  ],
+  "major_errors": [
+    "Atribuir a cor ao reflexo dos oceanos",
+    "Afirmar que apenas azul é espalhado"
+  ],
+  "reference_explanation": "Espalhamento atmosférico seletivo da luz solar (Rayleigh). A explicação pode citar percepção visual sem precisar derivar a lei de espalhamento.",
+  "sources": [
+    "https://spaceplace.nasa.gov/blue-sky/en/",
+    "https://www.weather.gov/fgz/SkyBlue"
+  ],
+  "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+  "review_fields": [
+    "reviewer",
+    "reviewed_at",
+    "criteria_evidence",
+    "major_errors_observed",
+    "passed",
+    "notes"
+  ],
+  "status": "not_yet_reviewed"
+}

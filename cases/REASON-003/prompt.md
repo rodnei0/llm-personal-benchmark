@@ -1,0 +1,1 @@
+Explique para um estudante do ensino médio, em português, em até 150 palavras. Não use ferramentas nem pesquisa externa. Um retângulo tem perímetro de 20 cm. É possível determinar uma única área só com essa informação? Justifique com dois exemplos de retângulos de áreas diferentes.

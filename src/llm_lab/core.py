@@ -15,7 +15,8 @@ def load_case(directory):
     directory = Path(directory)
     manifest_bytes = (directory / "case.json").read_bytes()
     manifest = json.loads(manifest_bytes)
-    if manifest["id"] != "LOG-001" or manifest["evaluator"] != "log_exact_v1":
+    from .evaluators import SUPPORTED
+    if manifest["evaluator"] not in SUPPORTED | {"log_exact_v1"}:
         raise ValueError("Caso/avaliador não suportado nesta versão")
     files = {key: (directory / manifest[key]).read_bytes()
              for key in ("prompt", "input", "expected")}
@@ -54,18 +55,19 @@ def evaluate(response, expected):
 
 
 def record(directory, response_path, participant, model, interface, configuration,
-           kind, output_root, elapsed_seconds=None):
+           kind, output_root, elapsed_seconds=None, inference=None):
     manifest, files, prompt, manifest_hash = load_case(directory)
     raw = Path(response_path).read_bytes()
     response = raw.decode("utf-8")
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:12]
     target = Path(output_root) / run_id
     target.mkdir(parents=True, exist_ok=False)
+    from .evaluators import evaluate_case
     result = {"schema_version": "1.0.0", "run_id": run_id,
               "recorded_at": datetime.now(timezone.utc).isoformat(),
               "data_kind": kind, "protocol": "first_response",
               "status": "completed", "executor_version": __version__,
-              "evaluator_version": "log_exact_v1", "case": manifest,
+              "evaluator_version": manifest["evaluator"], "case": manifest,
               "hashes": {"manifest": manifest_hash, "rendered_prompt": digest(prompt.encode()),
                          "response": digest(raw), **{k: digest(v) for k,v in files.items()}},
               "participant": {"name": participant, "model_reported": model,
@@ -75,7 +77,12 @@ def record(directory, response_path, participant, model, interface, configuratio
                           "elapsed_source": "manual" if elapsed_seconds is not None else None,
                           "tokens_per_second": None, "cpu": None, "ram": None, "temperature": None,
                           "unavailable_reason": "Importação manual; sem telemetria de inferência"},
-              "evaluation": evaluate(response, strict_json(files["expected"].decode()))}
+              "evaluation": evaluate_case(response, strict_json(files["expected"].decode()), manifest["evaluator"])}
+    if inference is not None:
+        result["inference"] = inference
+        result["metrics"].update(inference["metrics"])
+        result["metrics"]["elapsed_source"] = "perf_counter"
+        result["metrics"]["unavailable_reason"] = "CPU, RAM e temperatura não medidas"
     (target / "response.txt").write_bytes(raw)
     (target / "prompt.txt").write_text(prompt, encoding="utf-8")
     for key, content in files.items():
@@ -83,3 +90,4 @@ def record(directory, response_path, participant, model, interface, configuratio
     (target / "case.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     (target / "result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     return target, result
+

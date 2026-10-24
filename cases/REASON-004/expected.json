@@ -1,0 +1,24 @@
+{
+  "review_mode": "human",
+  "required_concepts": [
+    "Retirar da caixa rotulada mista, que é pura porque o rótulo está errado",
+    "Se sair maçã: caixa rotulada mista é maçãs; rotulada laranjas é mista; rotulada maçãs é laranjas",
+    "Se sair laranja: caixa rotulada mista é laranjas; rotulada maçãs é mista; rotulada laranjas é maçãs"
+  ],
+  "major_errors": [
+    "Concluir os conteúdos sem usar que todos os rótulos estão errados",
+    "Exigir mais de uma retirada"
+  ],
+  "reference_explanation": "A caixa rotulada mista não é mista. A fruta revela seu conteúdo puro; as demais são determinadas pela proibição de rótulos corretos.",
+  "sources": [],
+  "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+  "review_fields": [
+    "reviewer",
+    "reviewed_at",
+    "criteria_evidence",
+    "major_errors_observed",
+    "passed",
+    "notes"
+  ],
+  "status": "not_yet_reviewed"
+}

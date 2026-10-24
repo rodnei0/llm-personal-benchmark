@@ -1,0 +1,1 @@
+Explique para um estudante do ensino médio, em português, em até 150 palavras. Não use ferramentas nem pesquisa externa. Por que o céu da Terra parece azul em um dia claro, quando olhamos para longe do Sol?

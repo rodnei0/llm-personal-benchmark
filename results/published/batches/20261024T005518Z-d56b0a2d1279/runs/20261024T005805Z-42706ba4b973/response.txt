@@ -1,0 +1,44 @@
+```json
+{
+  "events": [
+    {
+      "timestamp": "2026-01-15T10:00:00Z",
+      "host": "lab-a",
+      "service": "ssh",
+      "user": "ana",
+      "ip": "192.0.2.10"
+    },
+    {
+      "timestamp": "2026-01-15T10:01:00Z",
+      "host": "lab-a",
+      "service": "ssh",
+      "user": "bruno",
+      "ip": "192.0.2.11"
+    },
+    {
+      "timestamp": "2026-01-15T10:01:00Z",
+      "host": "lab-a",
+      "service": "ssh",
+      "user": "bruno",
+      "ip": "192.0.2.11"
+    },
+    {
+      "timestamp": "2026-01-15T10:02:00Z",
+      "host": "lab-b",
+      "service": "vpn",
+      "user": "carla",
+      "ip": "2001:db8::7"
+    },
+    {
+      "timestamp": "2026-01-15T10:03:00Z",
+      "host": "lab-b",
+      "service": "vpn",
+      "user": "daniel",
+      "ip": "2001:db8::7"
+    }
+  ],
+  "invalid_lines": [
+    1
+  ]
+}
+```

@@ -2,7 +2,13 @@
 
 Laboratório pessoal e aberto para avaliar a utilidade de modelos locais e comerciais em tarefas reais. Documentação em português brasileiro.
 
-**Versão 0.1.0: apenas LOG-001 e importação manual.** Não há inferência Ollama, telemetria nem resultados reais nesta entrega. Os exemplos são demonstrativos e usam a resposta de referência, não um modelo.
+**Versão 0.4.0: LOG-001, importação manual, execução única e lotes sequenciais via Ollama.** Os exemplos versionados continuam demonstrativos. Nenhum resultado de modelo real foi obtido durante o desenvolvimento.
+
+## Comece aqui
+
+Não precisa de IA para acompanhar: siga o [guia do zero no Ubuntu](docs/setup-ubuntu.md), com checkpoints, instalação do Ollama, primeiro teste e solução de problemas. Registre o que executar no [modelo de diário](docs/templates/session.md). O guia ainda aguarda validação no homelab; os testes do código usam servidor simulado.
+
+**Branch desta entrega: `feat/ollama-runner` ([PR #1](https://github.com/rodnei0/llm-personal-benchmark/pull/1)).** A main inicial não contém o adaptador.
 
 ## Instalação
 
@@ -57,3 +63,35 @@ llm-lab import-response --case cases/LOG-001 --response cases/LOG-001/expected.j
 Os cinco casos planejados são LOG-001 (extração), PY-001 (script), SQL-001 (consulta), BUG-001 (correção) e INC-001 (incidente). Apenas LOG-001 está implementado.
 
 Não há licença concedida ainda: a escolha da licença open source está pendente antes da publicação. Nenhum peso de modelo é distribuído. Nenhuma operação GitHub é necessária para executar este piloto.
+
+
+## Executar no Ollama
+
+Com Ollama instalado e ativo no próprio homelab:
+
+```bash
+ollama pull qwen2.5:3b
+llm-lab run-ollama --case cases/LOG-001 --model qwen2.5:3b
+```
+
+Uma execução por comando, sem retentativas. O adaptador usa `/api/generate`, sem histórico e sem forçar formato JSON. Registra requisição, resposta completa da API, tempo de ponta a ponta e tokens/s de geração em `result.json`. `--host` permite selecionar outro servidor; o prompt será enviado ao endereço informado.
+
+Padrões explícitos: temperatura 0, seed 42, contexto 4096, limite de saída 1024 e timeout HTTP 600 segundos. Todos possuem opções CLI correspondentes (`llm-lab run-ollama --help`). O template e demais configurações do modelo instalado continuam valendo. Seed não garante determinismo. `keep_alive=0` pede descarregamento após a execução; o estado inicial de cache não é controlado.
+
+No ASUS com histórico de superaquecimento, faça uma única execução acompanhando o dashboard térmico existente. Este adaptador ainda não possui proteção térmica, coleta de sensores ou cancelamento confirmado no servidor. Timeout HTTP não comprova interrupção da inferência; não inicie outra execução até conferir o Ollama. Falhas de transporte retornam código 2, sem criar resultado; registre-as no diário da rodada e não as descarte da análise.
+
+Antes de comparar rodadas, registre `ollama --version`, `ollama list` (identificador do modelo), hardware e condições térmicas no diário. A identificação automática do digest do modelo está pendente. Tokens/s usa `eval_count / (eval_duration / 1e9)` e não inclui carregamento; o tempo total do cliente inclui a requisição. Não compare tokens/s entre tokenizadores como se fossem equivalentes.
+
+Referência da API: https://docs.ollama.com/api/generate
+
+## Lotes com telemetria e intervalo adaptativo
+
+Use `llm-lab batch-ollama` para testar vários modelos, um por vez, com pausa mínima e espera por recuperação de CPU/GPU. Salva respostas, avaliação, metadados e séries de CPU/RAM/GPU/temperatura, com resumo JSON/Markdown. Veja o [guia de lotes](docs/batch-ollama.md), incluindo publicação dos artefatos para análise. A barreira controla o início de rodadas; não é corte térmico durante inferência. O primeiro lote no homelab ainda requer validação acompanhada.
+
+## Controle térmico e novas perguntas
+
+Modo protegido opcional: `--thermal-guard` monitora a inferência e solicita parada do serviço local do Ollama em limite/erro, registrando se o encerramento foi confirmado. Veja [configuração e ensaio sem carga](docs/thermal-guard.md). O modo sem essa opção mantém apenas a recuperação entre rodadas. Não há garantia de limite rígido de temperatura.
+
+A [trilha de conhecimento e raciocínio](docs/knowledge-reasoning.md) inclui 12 casos de ciência, matemática, física e lógica, congelados antes da primeira execução: seis com avaliação objetiva automática e seis pendentes de revisão humana por rubrica. Use `suite-ollama` para uma sequência de casos, preservando cada lote e sua telemetria. Nenhum caso novo foi executado em modelo real durante o desenvolvimento.
+
+Validação desta versão: 90 testes passaram em Python 3.12.14, com API e controle de serviço simulados. A parada real pelo modo protegido ainda precisa ser validada no homelab.

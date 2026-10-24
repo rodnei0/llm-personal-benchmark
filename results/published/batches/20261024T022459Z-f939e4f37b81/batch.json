@@ -1,0 +1,386 @@
+{
+  "schema_version": "1.0.0",
+  "status": "completed",
+  "started_at": "2026-10-24T02:24:59.830103+00:00",
+  "case": {
+    "id": "SCI-001",
+    "version": "1.0.0",
+    "category": "science_conceptual",
+    "difficulty": "introductory",
+    "evaluator": "human_rubric_v1",
+    "prompt": "prompt.md",
+    "input": "input.txt",
+    "expected": "expected.json",
+    "data_kind": "synthetic",
+    "track": "knowledge_reasoning",
+    "design": "frozen_before_first_inference"
+  },
+  "manifest_sha256": "076a7cd17199be8d8fe5fb45cb511a3478db664d7392a90aa0458114a594e9c4",
+  "prompt_sha256": "b8f3233faf2b2cd856b07add0dd02412ba6eaa3e91bf7d241f61539e3abce2cf",
+  "git_commit": "a1d76dea80b7b94821aea4ba10740bc3db6e32d5",
+  "git_status": "?? prompt-log-001.txt\n?? reposta-comercial.txt\n?? resposta-claude.txt\n?? results/published/batches/20261024T022313Z-81ab982924bb/\n?? results/published/batches/20261024T022459Z-f939e4f37b81/",
+  "models": [
+    "qwen2.5:3b",
+    "qwen2.5-coder:3b-instruct-q4_K_M"
+  ],
+  "repetitions": 1,
+  "options": {
+    "host": "http://127.0.0.1:11434",
+    "timeout": 600,
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1024
+  },
+  "cooldown_seconds": 30.0,
+  "temperature_check": true,
+  "max_start_temp": 60,
+  "max_cooldown_wait": 900,
+  "temperature_source": "max coretemp temp*_input",
+  "max_gpu_temp": 60,
+  "max_cpu_usage": 20,
+  "max_gpu_usage": 10,
+  "sample_interval": 2,
+  "stable_seconds": 10,
+  "telemetry_file": "telemetry.jsonl",
+  "thermal_guard": true,
+  "abort_cpu_temp": 93.0,
+  "abort_gpu_temp": 80.0,
+  "guard_preflight": {
+    "service": "ollama.service",
+    "active": true,
+    "kill_mode": "control-group",
+    "control_group": "/system.slice/ollama.service",
+    "gpu_required": true
+  },
+  "runs": [
+    {
+      "model": "qwen2.5:3b",
+      "repetition": 1,
+      "status": "completed",
+      "telemetry_before": {
+        "at": "2026-10-24T02:25:12.041075+00:00",
+        "errors": [],
+        "cpu_percent": 3.2756489493201535,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 3847966720,
+        "cpu_temp_c": 52.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 50.0,
+            "utilization_percent": 0.0,
+            "memory_used_mib": 4.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "recovery",
+        "run_index": 0
+      },
+      "path": "runs/20261024T022536Z-669bb622743f",
+      "evaluation": {
+        "passed": null,
+        "status": "pending_human_review",
+        "checks": {},
+        "error": null,
+        "rubric": {
+          "review_mode": "human",
+          "required_concepts": [
+            "Luz solar contém diferentes comprimentos de onda",
+            "Moléculas atmosféricas espalham luz; comprimentos menores da luz visível são espalhados mais intensamente que os maiores",
+            "Luz espalhada de várias direções chega aos olhos e produz a aparência azul"
+          ],
+          "major_errors": [
+            "Atribuir a cor ao reflexo dos oceanos",
+            "Afirmar que apenas azul é espalhado"
+          ],
+          "reference_explanation": "Espalhamento atmosférico seletivo da luz solar (Rayleigh). A explicação pode citar percepção visual sem precisar derivar a lei de espalhamento.",
+          "sources": [
+            "https://spaceplace.nasa.gov/blue-sky/en/",
+            "https://www.weather.gov/fgz/SkyBlue"
+          ],
+          "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+          "review_fields": [
+            "reviewer",
+            "reviewed_at",
+            "criteria_evidence",
+            "major_errors_observed",
+            "passed",
+            "notes"
+          ],
+          "status": "not_yet_reviewed"
+        },
+        "note": "Nenhuma nota automática; revisar resposta original conforme rubrica"
+      },
+      "metrics": {
+        "elapsed_seconds": 22.314931499000522,
+        "elapsed_source": "perf_counter",
+        "tokens_per_second": 12.073632230956173,
+        "cpu": null,
+        "ram": null,
+        "temperature": null,
+        "unavailable_reason": "CPU, RAM e temperatura não medidas"
+      },
+      "response_sha256": "dbacc1fa23f447b7ccfce73a01dd45bfc433080bd884d4dcdbeb96f2763c30d2",
+      "done_reason": "stop",
+      "eval_count": 214,
+      "telemetry_after": {
+        "at": "2026-10-24T02:25:34.381159+00:00",
+        "errors": [],
+        "cpu_percent": 56.33106856084002,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 4277186560,
+        "cpu_temp_c": 86.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 68.0,
+            "utilization_percent": 29.0,
+            "memory_used_mib": 1035.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "inference",
+        "run_index": 0
+      },
+      "telemetry_summary": {
+        "sample_count": 11,
+        "cpu_peak_percent": 56.33106856084002,
+        "cpu_peak_temp_c": 86.0,
+        "ram_peak_used_bytes": 4277186560,
+        "gpu_peak_temp_c": 68.0,
+        "gpu_peak_memory_used_mib": 1035.0,
+        "gpu_peak_percent": 96.0
+      }
+    },
+    {
+      "model": "qwen2.5-coder:3b-instruct-q4_K_M",
+      "repetition": 1,
+      "status": "completed",
+      "telemetry_before": {
+        "at": "2026-10-24T02:26:27.352301+00:00",
+        "errors": [],
+        "cpu_percent": 1.8541409147095234,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 3970535424,
+        "cpu_temp_c": 54.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 53.0,
+            "utilization_percent": 0.0,
+            "memory_used_mib": 4.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "recovery",
+        "run_index": 1
+      },
+      "path": "runs/20261024T022646Z-7d1d69df7d2a",
+      "evaluation": {
+        "passed": null,
+        "status": "pending_human_review",
+        "checks": {},
+        "error": null,
+        "rubric": {
+          "review_mode": "human",
+          "required_concepts": [
+            "Luz solar contém diferentes comprimentos de onda",
+            "Moléculas atmosféricas espalham luz; comprimentos menores da luz visível são espalhados mais intensamente que os maiores",
+            "Luz espalhada de várias direções chega aos olhos e produz a aparência azul"
+          ],
+          "major_errors": [
+            "Atribuir a cor ao reflexo dos oceanos",
+            "Afirmar que apenas azul é espalhado"
+          ],
+          "reference_explanation": "Espalhamento atmosférico seletivo da luz solar (Rayleigh). A explicação pode citar percepção visual sem precisar derivar a lei de espalhamento.",
+          "sources": [
+            "https://spaceplace.nasa.gov/blue-sky/en/",
+            "https://www.weather.gov/fgz/SkyBlue"
+          ],
+          "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+          "review_fields": [
+            "reviewer",
+            "reviewed_at",
+            "criteria_evidence",
+            "major_errors_observed",
+            "passed",
+            "notes"
+          ],
+          "status": "not_yet_reviewed"
+        },
+        "note": "Nenhuma nota automática; revisar resposta original conforme rubrica"
+      },
+      "metrics": {
+        "elapsed_seconds": 18.589327537003555,
+        "elapsed_source": "perf_counter",
+        "tokens_per_second": 11.70127749192835,
+        "cpu": null,
+        "ram": null,
+        "temperature": null,
+        "unavailable_reason": "CPU, RAM e temperatura não medidas"
+      },
+      "response_sha256": "c6766704b4cc7a31a1a53d9926b577f5f18a3a8a4e1cae43fedf593725dff351",
+      "done_reason": "stop",
+      "eval_count": 118,
+      "telemetry_after": {
+        "at": "2026-10-24T02:26:45.657927+00:00",
+        "errors": [],
+        "cpu_percent": 52.00741198270538,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 4184862720,
+        "cpu_temp_c": 85.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 64.0,
+            "utilization_percent": 35.0,
+            "memory_used_mib": 1030.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "inference",
+        "run_index": 1
+      },
+      "telemetry_summary": {
+        "sample_count": 9,
+        "cpu_peak_percent": 54.41085749537322,
+        "cpu_peak_temp_c": 86.0,
+        "ram_peak_used_bytes": 4321771520,
+        "gpu_peak_temp_c": 65.0,
+        "gpu_peak_memory_used_mib": 1030.0,
+        "gpu_peak_percent": 35.0
+      }
+    }
+  ],
+  "ollama_version": {
+    "version": "0.40.10"
+  },
+  "ollama_tags": {
+    "models": [
+      {
+        "name": "qwen2.5-coder:7b-instruct-q4_K_M",
+        "model": "qwen2.5-coder:7b-instruct-q4_K_M",
+        "modified_at": "2026-10-23T21:03:06.47498023-04:00",
+        "size": 4683087561,
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 3584,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "model": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "modified_at": "2026-10-23T20:39:54.844351432-04:00",
+        "size": 1929912626,
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "gemma3:4b",
+        "model": "gemma3:4b",
+        "modified_at": "2026-10-23T20:16:56.189891804-04:00",
+        "size": 3350272403,
+        "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3",
+            "clip"
+          ],
+          "parameter_size": "3.9B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 131072,
+          "embedding_length": 2560,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion",
+          "vision"
+        ]
+      },
+      {
+        "name": "gemma3:1b",
+        "model": "gemma3:1b",
+        "modified_at": "2026-10-23T20:10:25.769079424-04:00",
+        "size": 806067407,
+        "digest": "97558784bdc9175075a72655bf360b15da17df6b3b9e5182af9f8c0c8e58ba7c",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:1b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3"
+          ],
+          "parameter_size": "999.89M",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 1152,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion"
+        ]
+      },
+      {
+        "name": "qwen2.5:3b",
+        "model": "qwen2.5:3b",
+        "modified_at": "2026-10-23T19:30:03.58209086-04:00",
+        "size": 1929912432,
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      }
+    ]
+  },
+  "finished_at": "2026-10-24T02:26:46.893795+00:00"
+}

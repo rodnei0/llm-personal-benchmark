@@ -1,0 +1,26 @@
+{
+  "review_mode": "human",
+  "required_concepts": [
+    "Há variação de resistência na população",
+    "Antibiótico exerce seleção diferencial: resistentes têm vantagem de sobrevivência/reprodução",
+    "Descendência/transmissão da resistência pode aumentar sua frequência"
+  ],
+  "major_errors": [
+    "Dizer que o corpo da pessoa se torna resistente em vez das bactérias",
+    "Explicar por decisão ou necessidade consciente da bactéria"
+  ],
+  "reference_explanation": "Seleção altera a composição da população, não exige que todas as bactérias aprendam a resistir. Resistência pode ser herdada e pode haver transferência genética.",
+  "sources": [
+    "https://www.cdc.gov/antimicrobial-resistance/about/"
+  ],
+  "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+  "review_fields": [
+    "reviewer",
+    "reviewed_at",
+    "criteria_evidence",
+    "major_errors_observed",
+    "passed",
+    "notes"
+  ],
+  "status": "not_yet_reviewed"
+}
