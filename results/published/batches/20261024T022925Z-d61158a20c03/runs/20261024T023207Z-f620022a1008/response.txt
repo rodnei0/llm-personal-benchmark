@@ -1,0 +1,17 @@
+As estações do ano são causadas pela rotação da Terra em torno do Sol. No hemisfério Norte, as estações ocorrem da seguinte maneira:
+
+1. Verão: A Terra se aproxima do Sol, aumentando a temperatura e o sol nasce mais cedo e pisa mais tarde.
+
+2. Outono: A Terra se afasta do Sol, diminuindo a temperatura e o sol nasce mais tarde e pisa mais cedo.
+
+3. Inverno: A Terra se afasta ainda mais do Sol, tornando a temperatura muito baixa e o sol não aparecer durante o dia.
+
+No hemisfério Sul, as estações ocorrem da seguinte maneira:
+
+1. Verão: A Terra se afasta do Sol, aumentando a temperatura e o sol nasce mais cedo e pisa mais tarde.
+
+2. Outono: A Terra se aproxima do Sol, diminuindo a temperatura e o sol nasce mais tarde e pisa mais cedo.
+
+3. Inverno: A Terra se aproxima ainda mais do Sol, tornando a temperatura muito baixa e o sol não aparecer durante o dia.
+
+Essas diferenças ocorrem porque o hemisfério Norte está mais perto do Sol durante o verão e mais distante durante o inverno, enquanto o hemisfério Sul está mais distante do Sol durante o verão e mais perto durante o inverno.

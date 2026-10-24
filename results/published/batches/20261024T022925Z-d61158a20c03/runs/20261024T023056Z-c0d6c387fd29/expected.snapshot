@@ -1,0 +1,26 @@
+{
+  "review_mode": "human",
+  "required_concepts": [
+    "Inclinação do eixo terrestre e translação mudam iluminação de cada hemisfério",
+    "Variação do ângulo solar e duração do dia altera energia recebida",
+    "Hemisférios recebem condições opostas na mesma época"
+  ],
+  "major_errors": [
+    "Atribuir principalmente à distância Terra-Sol",
+    "Afirmar que os dois hemisférios ficam mais próximos do Sol no mesmo verão"
+  ],
+  "reference_explanation": "O eixo inclinado mantém aproximadamente a orientação ao longo da órbita; um hemisfério inclina-se em direção ao Sol enquanto o outro se afasta.",
+  "sources": [
+    "https://www.weather.gov/fsd/season"
+  ],
+  "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+  "review_fields": [
+    "reviewer",
+    "reviewed_at",
+    "criteria_evidence",
+    "major_errors_observed",
+    "passed",
+    "notes"
+  ],
+  "status": "not_yet_reviewed"
+}
