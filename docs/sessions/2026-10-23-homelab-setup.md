@@ -197,3 +197,25 @@ Modelo e esforço informados pelo usuário: Claude Opus 5.5, médio. Interface p
 O texto anteriormente colado pelo usuário contém aspas tipográficas/curvas misturadas com aspas ASCII e apresenta semanticamente os eventos Bruno/Carla e invalid_lines=[5,6]. O parser rejeitou o arquivo importado; checks de schema e conteúdo não foram executados. O arquivo bruto completo e seu hash ainda não foram compartilhados. Não há evidência suficiente para atribuir a transformação de aspas ao modelo: ela pode estar presente na saída original ou ter ocorrido no trajeto de cópia. Classificar como falha de JSON do artefato importado, com proveniência textual pendente, sem concluir que o modelo original produziu JSON inválido.
 
 Próxima verificação proposta: preservar essa importação e copiar novamente a MESMA resposta pelo botão de cópia do Claude web, sem pedir regeneração, comparar os arquivos e verificar as aspas. Se houver nova importação da mesma resposta, identificá-la como verificação de transcrição, não repetição independente do modelo. Não corrigir silenciosamente o texto nem contar as duas importações como duas respostas geradas.
+
+## Etapa 12 — confirmação da cópia direta do Claude
+
+O usuário compartilhou uma cópia direta da mesma resposta com aspas ASCII e conteúdo correspondente à referência. Reimportou usando resposta-claude.txt, interface Claude web e configuration identificando verificação de transcrição da importação 20261024T000506Z-d6d248697714.
+
+- Novo Run ID: 20261024T000748Z-a3d3c2994178.
+- passed=true; valid_json, schema, events_exact e invalid_lines_exact todos true.
+- Trata-se de uma mesma geração com duas importações, não de duas respostas do modelo. A primeira importação inválida deve ser preservada. A causa específica da transformação das aspas no trajeto anterior não foi isolada.
+
+## Etapa 13 — primeira execução Gemma 3 1B
+
+Saída da CLI fornecida pelo usuário:
+
+- Comando: llm-lab run-ollama --case cases/LOG-001 --model gemma3:1b.
+- Run ID: 20261024T001105Z-b55f835a06d7.
+- passed=false; checks={valid_json:false}.
+- Erro: Expecting value: line 1 column 1 (char 0).
+- Tempo cliente: 17.650573797989637 s; geração: 28.696509347014697 tokens/s.
+- Temperatura observada relatada: 74 °C; sensor e série temporal não fornecidos.
+- CPU, RAM e temperatura no registro automático: null.
+
+Resposta bruta e metadados completos ainda não compartilhados. Não inferir Markdown, resposta vazia ou truncamento apenas a partir da mensagem do parser. Detalhes locais de ollama show, quantização, digest e backend durante esta execução também pendentes. Próximo passo proposto: ler resposta e metadados salvos, sem nova inferência. Comparações de velocidade entre modelos/tokenizadores não representam equivalência de trabalho ou qualidade; temperatura manual não é um ensaio térmico controlado.
