@@ -14,3 +14,18 @@ Essa checagem verifica condições de configuração e consulta não interativa 
 ## Pendente
 
 Conferir ollama ps sem modelos carregados e executar llm-lab thermal-check --test-stop. Confirmar shutdown.confirmed=true antes de considerar o caminho de parada validado no equipamento. Não há inferência nem teste de limite térmico real confirmado nesta sessão. Nenhuma das 12 perguntas novas foi executada até este registro.
+
+## Ensaio de parada: falha inicial de permissão
+
+Após ollama ps exibir apenas o cabeçalho, o primeiro thermal-check --test-stop falhou: sudo exigiu autenticação interativa; stop_returncode=1, serviço active, PID ainda no grupo e API respondendo. Nenhuma carga de modelo foi executada no ensaio. A checagem sudo -n -l do preflight não comprovou autorização efetiva sem senha para o stop: é uma limitação observada, e o ensaio real continua necessário. Foi orientada regra sudoers restrita ao comando systemctl stop ollama.service; não foi compartilhado o conteúdo efetivamente instalado.
+
+## Ensaio de parada confirmado
+
+Usuário repetiu llm-lab thermal-check --test-stop e compartilhou saída em 2026-10-24T02:16:51.834406+00:00 (2026-10-23 22:16:51 America/Cuiaba).
+
+- CPU 57 °C, GPU 49 °C; errors=[].
+- shutdown.confirmed=true.
+- stop_returncode=0; active_state=inactive; main_pid=0.
+- remaining_pids=[]; api_connection_refused=true.
+
+O ensaio resolveu a pendência de parada sem carga no equipamento. Não demonstra cancelamento durante geração real, tempo de reação sob carga ou contenção de pico térmico. Próximo passo: reinício manual do serviço, conferência de versão e uma execução SCI-001 com modelo pequeno e --thermal-guard, acompanhada. Não forçar aquecimento para testar corte. Novas perguntas ainda não executadas até este registro.
