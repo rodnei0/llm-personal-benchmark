@@ -1,0 +1,1 @@
+Considere apenas as premissas: se chove, a rua fica molhada; a rua está molhada. É logicamente garantido que choveu? Responda somente JSON puro com a chave "answer" e valor booleano true ou false, sem explicação nem Markdown.

@@ -1,0 +1,13 @@
+{
+  "id": "REASON-002",
+  "version": "1.0.0",
+  "category": "counterexample",
+  "difficulty": "introductory",
+  "evaluator": "numeric_json_v1",
+  "prompt": "prompt.md",
+  "input": "input.txt",
+  "expected": "expected.json",
+  "data_kind": "synthetic",
+  "track": "knowledge_reasoning",
+  "design": "frozen_before_first_inference"
+}

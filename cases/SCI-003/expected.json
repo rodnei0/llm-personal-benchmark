@@ -1,0 +1,27 @@
+{
+  "review_mode": "human",
+  "required_concepts": [
+    "As peças podem estar à mesma temperatura em equilíbrio com o ambiente",
+    "Calor flui da mão mais quente para as peças",
+    "Metal costuma transferir calor da mão mais rapidamente por suas propriedades térmicas"
+  ],
+  "major_errors": [
+    "Concluir que o metal precisa estar a temperatura menor",
+    "Dizer que madeira não troca calor"
+  ],
+  "reference_explanation": "Sensação térmica depende da rapidez da transferência, não apenas da temperatura. Aceitar referência à condutividade e/ou efusividade.",
+  "sources": [
+    "https://www.aps.org/learning-resources/getting-warmer-colder",
+    "https://openstax.org/books/university-physics-volume-2/pages/1-6-mechanisms-of-heat-transfer"
+  ],
+  "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+  "review_fields": [
+    "reviewer",
+    "reviewed_at",
+    "criteria_evidence",
+    "major_errors_observed",
+    "passed",
+    "notes"
+  ],
+  "status": "not_yet_reviewed"
+}

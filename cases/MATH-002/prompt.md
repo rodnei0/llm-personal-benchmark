@@ -1,0 +1,1 @@
+Uma urna contém 2 bolas vermelhas e 3 azuis, distinguíveis e igualmente prováveis. Retiram-se duas bolas uniformemente ao acaso, sem reposição. Qual a probabilidade de ambas serem vermelhas? Responda somente JSON puro com "answer" como número decimal entre 0 e 1, sem explicação nem Markdown.

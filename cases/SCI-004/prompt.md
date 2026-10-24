@@ -1,0 +1,1 @@
+Explique para um estudante do ensino médio, em português, em até 150 palavras. Não use ferramentas nem pesquisa externa. Em uma população de bactérias com variantes sensíveis e resistentes a um antibiótico, por que a proporção de resistentes pode aumentar após exposição ao medicamento? Explique o mecanismo evolutivo, sem orientar tratamento médico.

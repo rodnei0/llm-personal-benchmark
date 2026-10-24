@@ -1,6 +1,6 @@
 # Lotes locais com telemetria e recuperação adaptativa
 
-Versão 0.3.0. Linux; CPU Intel com sensor coretemp e GPU NVIDIA consultada via nvidia-smi. Procfs fornece uso global de CPU/RAM. Não requer novos pacotes Python nem scripts shell externos. GPU AMD/Intel não tem telemetria de GPU implementada nesta versão.
+Versão 0.4.0. Linux; CPU Intel com sensor coretemp e GPU NVIDIA consultada via nvidia-smi. Procfs fornece uso global de CPU/RAM. Não requer novos pacotes Python nem scripts shell externos. GPU AMD/Intel não tem telemetria de GPU implementada nesta versão.
 
 ## Preparação
 
@@ -66,7 +66,7 @@ O comando avalia o caso automaticamente. Não repara JSON, não remove Markdown 
 
 Reprovação funcional (passed=false) é um resultado válido: o lote continua após a recuperação. Falha HTTP, timeout, erro de gravação/coleta detectado ou Ctrl+C encerra o lote, registra o estado possível e não tenta automaticamente o próximo modelo. Timeout/Ctrl+C do cliente não confirmam cancelamento no servidor. Confira o serviço antes de retomar. Não existe retomada automática de lote interrompido; um novo comando cria outro lote.
 
-**Esta versão acompanha a temperatura durante a geração, mas só controla o início da próxima rodada. Não implementa corte térmico automático durante uma requisição.** Mantenha acompanhamento na validação inicial, especialmente no equipamento com histórico de desligamento. Se precisar interromper a carga, pare o serviço em outro terminal e confirme o estado:
+**Sem `--thermal-guard`, a coleta durante a geração só controla o início da próxima rodada. Para interrupção monitorada durante a inferência, configure e valide o [modo protegido](thermal-guard.md).** Mantenha acompanhamento na validação inicial, especialmente no equipamento com histórico de desligamento. Se precisar interromper a carga, pare o serviço em outro terminal e confirme o estado:
 
 ```bash
 sudo systemctl stop ollama
@@ -105,4 +105,4 @@ O programa não faz commit/push. Compartilhe o hash ou caminho do lote; a análi
 
 ## Validação de desenvolvimento
 
-**51 testes passaram em Python 3.12.14.** Testes usam servidor HTTP simulado e amostras controladas. A validação automatizada inclui ordem sequencial, intervalos, resultados aprovados/reprovados, snapshots, digests, falhas sem retentativa, interrupção, barreira de recuperação e GPU indisponível. Não é evidência de funcionamento dos sensores do homelab; esse é o próximo teste de campo. O ramo de execução única continua disponível.
+**90 testes passaram em Python 3.12.14 na versão 0.4.0, incluindo catálogo, suítes e controle de parada simulado.** Testes usam servidor HTTP simulado e amostras controladas. A validação automatizada inclui ordem sequencial, intervalos, resultados aprovados/reprovados, snapshots, digests, falhas sem retentativa, interrupção, barreira de recuperação e GPU indisponível. Não é evidência de funcionamento dos sensores do homelab; esse é o próximo teste de campo. O ramo de execução única continua disponível.

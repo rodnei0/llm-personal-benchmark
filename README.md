@@ -2,7 +2,7 @@
 
 Laboratório pessoal e aberto para avaliar a utilidade de modelos locais e comerciais em tarefas reais. Documentação em português brasileiro.
 
-**Versão 0.3.0: LOG-001, importação manual, execução única e lotes sequenciais via Ollama.** Os exemplos versionados continuam demonstrativos. Nenhum resultado de modelo real foi obtido durante o desenvolvimento.
+**Versão 0.4.0: LOG-001, importação manual, execução única e lotes sequenciais via Ollama.** Os exemplos versionados continuam demonstrativos. Nenhum resultado de modelo real foi obtido durante o desenvolvimento.
 
 ## Comece aqui
 
@@ -87,3 +87,11 @@ Referência da API: https://docs.ollama.com/api/generate
 ## Lotes com telemetria e intervalo adaptativo
 
 Use `llm-lab batch-ollama` para testar vários modelos, um por vez, com pausa mínima e espera por recuperação de CPU/GPU. Salva respostas, avaliação, metadados e séries de CPU/RAM/GPU/temperatura, com resumo JSON/Markdown. Veja o [guia de lotes](docs/batch-ollama.md), incluindo publicação dos artefatos para análise. A barreira controla o início de rodadas; não é corte térmico durante inferência. O primeiro lote no homelab ainda requer validação acompanhada.
+
+## Controle térmico e novas perguntas
+
+Modo protegido opcional: `--thermal-guard` monitora a inferência e solicita parada do serviço local do Ollama em limite/erro, registrando se o encerramento foi confirmado. Veja [configuração e ensaio sem carga](docs/thermal-guard.md). O modo sem essa opção mantém apenas a recuperação entre rodadas. Não há garantia de limite rígido de temperatura.
+
+A [trilha de conhecimento e raciocínio](docs/knowledge-reasoning.md) inclui 12 casos de ciência, matemática, física e lógica, congelados antes da primeira execução: seis com avaliação objetiva automática e seis pendentes de revisão humana por rubrica. Use `suite-ollama` para uma sequência de casos, preservando cada lote e sua telemetria. Nenhum caso novo foi executado em modelo real durante o desenvolvimento.
+
+Validação desta versão: 90 testes passaram em Python 3.12.14, com API e controle de serviço simulados. A parada real pelo modo protegido ainda precisa ser validada no homelab.

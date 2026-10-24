@@ -108,3 +108,17 @@ def test_cool_machine_can_start_with_gate_enabled(api,tmp_path):
         _,data=run_batch(CASE,['a:1'],host=host,output_root=tmp_path,stable_seconds=0)
     assert len(state['requests'])==1
     assert data['runs'][0]['telemetry_before']['cpu_temp_c']==52
+
+
+def test_guard_abort_records_shutdown_and_stops_batch(api,tmp_path):
+    from unittest.mock import Mock
+    from llm_lab.thermal import GuardAbort
+    host,state=api
+    stopper=Mock();stopper.preflight.return_value={}
+    with patch('llm_lab.batch.ServiceStopper',return_value=stopper),patch('llm_lab.batch.cpu_temperature',return_value=52),patch('llm_lab.telemetry.Sampler.sample',return_value=dict(SAMPLE)),patch('shutil.which',return_value=None),patch('llm_lab.batch.guarded_run',side_effect=GuardAbort('CPU quente',{'confirmed':False})):
+        with pytest.raises(ValueError,match='aborted'):
+            run_batch(CASE,['a:1','b:1'],host=host,output_root=tmp_path,thermal_guard=True,stable_seconds=0)
+    data=json.loads(next(tmp_path.glob('*/batch.json')).read_text())
+    assert data['status']=='aborted' and data['shutdown']['confirmed'] is False
+    assert len(data['runs'])==1 and data['runs'][0]['evaluation'] is None
+    assert not state['requests']

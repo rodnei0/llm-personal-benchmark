@@ -1,0 +1,6 @@
+{
+  "answer": 20,
+  "unit": "m",
+  "absolute_tolerance": 1e-09,
+  "derivation": "s=(1/2)*10*2²=20 m"
+}

@@ -1,0 +1,5 @@
+{
+  "answer": 7,
+  "absolute_tolerance": 1e-09,
+  "derivation": "3x=21; x=7"
+}

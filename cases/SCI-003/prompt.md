@@ -1,0 +1,1 @@
+Explique para um estudante do ensino médio, em português, em até 150 palavras. Não use ferramentas nem pesquisa externa. Uma peça de metal e uma de madeira ficaram por horas no mesmo ambiente a 22 °C. Sua mão está mais quente. Por que o metal pode parecer mais frio ao toque?

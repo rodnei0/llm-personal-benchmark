@@ -10,6 +10,7 @@ from uuid import uuid4
 
 from .core import digest, load_case
 from .ollama import run
+from .thermal import ServiceStopper, GuardAbort, guarded_run
 
 
 from .telemetry import cpu_temperature, Monitor, recovery_ready, summarize
@@ -33,7 +34,12 @@ def _save(root, data):
         metrics = item.get('metrics', {})
         # JSON é a fonte exata; valores controlados são escapados para a tabela.
         name = item['model'].replace('|', '\\|').replace('\n', ' ')
-        lines.append(f"| {name} | {item['repetition']} | {item['status']} | {item.get('evaluation', {}).get('passed', '—')} | {metrics.get('elapsed_seconds', '—')} | {metrics.get('tokens_per_second', '—')} |")
+        approved = (item.get('evaluation') or {}).get('passed')
+        approved = 'pendente' if approved is None else approved
+        lines.append(f"| {name} | {item['repetition']} | {item['status']} | {approved} | {metrics.get('elapsed_seconds', '—')} | {metrics.get('tokens_per_second', '—')} |")
+    if 'shutdown' in data:
+        lines += ['', 'Parada do serviço confirmada: ' + str(data['shutdown'].get('confirmed')),
+                  'Motivo: ' + str(data.get('error'))]
     lines += ['', '## Registros', '']
     for item in data['runs']:
         if 'path' in item:
@@ -51,7 +57,8 @@ def run_batch(directory, models, *, repetitions=1, cooldown=30,
               output_root='results/runs/batches', temperature_check=True,
               max_start_temp=60, max_cooldown_wait=900,
               max_gpu_temp=60, max_cpu_usage=20, max_gpu_usage=10,
-              sample_interval=2, stable_seconds=10, **options):
+              sample_interval=2, stable_seconds=10, thermal_guard=False,
+              abort_cpu_temp=85, abort_gpu_temp=80, **options):
     if not models or any(not m.strip() for m in models) or len(set(models)) != len(models):
         raise ValueError('Informe modelos não vazios e sem duplicatas; use --repetitions para repetir')
     if type(repetitions) is not int or repetitions < 1:
@@ -62,6 +69,10 @@ def run_batch(directory, models, *, repetitions=1, cooldown=30,
         raise ValueError('Intervalos devem ser finitos e não negativos; temperatura deve ser finita')
     if any(not math.isfinite(v) for v in (max_gpu_temp, max_cpu_usage, max_gpu_usage, sample_interval, stable_seconds)) or sample_interval < 0.1 or stable_seconds < 0 or not 0 <= max_cpu_usage <= 100 or not 0 <= max_gpu_usage <= 100:
         raise ValueError('Limites de telemetria inválidos')
+    if any(not math.isfinite(v) or v <= 0 for v in (abort_cpu_temp, abort_gpu_temp)):
+        raise ValueError('Limites térmicos devem ser finitos e positivos')
+    if thermal_guard and (not temperature_check or sample_interval > 2 or max_start_temp >= abort_cpu_temp or max_gpu_temp >= abort_gpu_temp):
+        raise ValueError('Modo protegido exige recuperação habilitada, amostragem <=2 s e limites de início abaixo do corte')
     # Validação antes de criar o lote ou iniciar qualquer inferência.
     host = options.get('host', 'http://127.0.0.1:11434')
     timeout = options.get('timeout', 600)
@@ -76,6 +87,8 @@ def run_batch(directory, models, *, repetitions=1, cooldown=30,
         raise ValueError('Host deve ser uma origem HTTP(S) sem credenciais ou caminho')
     if temperature_check and parsed.hostname not in ('localhost', '127.0.0.1', '::1'):
         raise ValueError('Sensor local não representa servidor remoto; use monitoramento externo e --no-temperature-check')
+    stopper = ServiceStopper(host) if thermal_guard else None
+    guard_preflight = stopper.preflight() if stopper else None
     manifest, files, prompt, manifest_hash = load_case(directory)
     if temperature_check:
         cpu_temperature()
@@ -102,7 +115,8 @@ def run_batch(directory, models, *, repetitions=1, cooldown=30,
             'max_gpu_temp': max_gpu_temp, 'max_cpu_usage': max_cpu_usage,
             'max_gpu_usage': max_gpu_usage, 'sample_interval': sample_interval,
             'stable_seconds': stable_seconds, 'telemetry_file': 'telemetry.jsonl',
-            'runs': []}
+            'thermal_guard': thermal_guard, 'abort_cpu_temp': abort_cpu_temp,
+            'abort_gpu_temp': abort_gpu_temp, 'guard_preflight': guard_preflight, 'runs': []}
     _save(root, data)
     print(f'Lote: {root}', flush=True)
     monitor = Monitor(root / 'telemetry.jsonl', sample_interval)
@@ -155,7 +169,12 @@ def run_batch(directory, models, *, repetitions=1, cooldown=30,
                 _save(root, data)
                 print(f'Executando {model}, repetição {repetition}', flush=True)
                 monitor.phase, monitor.run_index = 'inference', len(data['runs']) - 1
-                target, result = run(frozen, model, root / 'runs', **options)
+                if stopper:
+                    target, result = guarded_run(
+                        lambda: run(frozen, model, root / 'runs', **options), monitor, stopper,
+                        cpu_limit=abort_cpu_temp, gpu_limit=abort_gpu_temp)
+                else:
+                    target, result = run(frozen, model, root / 'runs', **options)
                 monitor.phase = 'recovery'
                 item.update(status='completed', path=str(target.relative_to(root)),
                             evaluation=result['evaluation'], metrics=result['metrics'],
@@ -168,6 +187,14 @@ def run_batch(directory, models, *, repetitions=1, cooldown=30,
                     item['telemetry_summary'] = summarize(root / 'telemetry.jsonl', len(data['runs']) - 1)
                 _save(root, data)
         data['status'] = 'completed'
+    except GuardAbort as exc:
+        data['status'] = 'aborted'
+        data['error'] = exc.reason
+        data['shutdown'] = exc.shutdown
+        if data['runs']:
+            data['runs'][-1]['evaluation'] = None
+            data['runs'][-1]['abort_reason'] = exc.reason
+            data['runs'][-1]['shutdown'] = exc.shutdown
     except KeyboardInterrupt:
         data['status'] = 'interrupted'
         data['error'] = 'Interrompido pelo usuário; cancelamento no servidor não confirmado'

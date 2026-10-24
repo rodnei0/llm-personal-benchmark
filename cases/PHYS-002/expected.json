@@ -1,0 +1,6 @@
+{
+  "answer": 9,
+  "unit": "J",
+  "absolute_tolerance": 1e-09,
+  "derivation": "E=(1/2)*2*3²=9 J"
+}

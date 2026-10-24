@@ -1,15 +1,19 @@
-# Próximos passos acordados
+# Próximos passos
 
-## Agora: lote do caso existente
+## Entregue na versão 0.4.0
 
-Executar e validar no homelab o lote sequencial de LOG-001 original (cases/LOG-001, versão 1.0.0), incluindo qwen2.5:3b, qwen2.5-coder:3b-instruct-q4_K_M e gemma3:1b. Preservar respostas, avaliações e telemetria; analisar os artefatos publicados. Não misturar a variante explícita com o caso original no mesmo tratamento. Gemma 4B fora deste primeiro lote após os 90 °C observados. O lote e seus sensores ainda precisam de validação no equipamento real.
+- Lotes sequenciais com mínimo de 30 s, telemetria e recuperação adaptativa.
+- Controle térmico opcional durante inferência com parada de ollama.service e registro da confirmação; testes simulados, ensaio real pendente.
+- Catálogo suites/knowledge-v1.json: 12 casos de ciência, matemática, física e raciocínio. Seis objetivos automáticos e seis pendentes de revisão humana. Nenhuma inferência desses casos realizada durante o desenvolvimento.
+- suite-ollama para executar casos em sequência, com snapshots, resultados e telemetria por lote.
 
-## Próxima expansão: conhecimento e raciocínio
+## Agora, no homelab
 
-Usuário aprovou deixar anotada, sem implementar ou executar agora, uma trilha de perguntas conceituais/abstratas e problemas verificáveis de ciência, matemática e física. Exemplo sugerido: por que o céu é azul?
+1. Atualizar o código e executar os testes.
+2. Configurar permissão restrita de parada e validar thermal-check --test-stop sem modelos carregados, conforme docs/thermal-guard.md.
+3. Reiniciar o serviço manualmente e validar uma pergunta em modelo pequeno com --thermal-guard.
+4. Só então considerar a suíte, preservando todas as respostas, interrupções e revisões humanas.
 
-Proposta inicial para a próxima etapa: 12 casos, quatro conceituais, quatro quantitativos e quatro de raciocínio. O catálogo final e as referências serão preparados e revisados antes de executar os modelos. Incluir casos de informação insuficiente e variações para investigar raciocínio além de perguntas famosas.
+## Depois
 
-Método proposto: avaliadores determinísticos para valores/unidades/tolerâncias quando aplicável; rubricas explícitas e revisão humana para explicações conceituais. IA pode auxiliar na revisão, sem ser o único juiz. Definir público, extensão e hipóteses no prompt; aceitar formulações corretas diferentes. Separar resultados desta trilha dos testes de desenvolvimento/infraestrutura, sem nota geral agregada.
-
-Este arquivo registra prioridade de projeto, não um agendamento automático ou uma tarefa já implementada.
+Revisar referências/rubricas, analisar diferenças entre conhecimento e atendimento de formato, criar variações inéditas antes das próximas rodadas. Manter resultados separados do LOG-001 e não produzir ranking geral. Retomar casos de programação e infraestrutura planejados. Reavaliar refrigeração antes de novas séries pesadas com 7B ou maiores.
