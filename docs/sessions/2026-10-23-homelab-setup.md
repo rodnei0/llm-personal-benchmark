@@ -162,3 +162,24 @@ O usuário executou comparação local de response.txt: respostas byte a byte id
 | Temperatura observada | 86 °C | 86 °C |
 
 Ambas solicitaram temperature=0.0, seed=42, num_ctx=4096, num_predict=1024. Duas execuções apresentaram repetibilidade observada nesse caso/configuração; isso não garante determinismo em futuras execuções ou plataformas. Ambas terminaram normalmente sem esgotar o limite de saída. Não há evidência de que a temperatura causou os erros. Não foi proposta uma terceira execução idêntica neste checkpoint; próximo contraste útil é aplicar o mesmo prompt exportado a outro participante, em sessão independente, preservando o protocolo.
+
+## Etapa 10 — ChatGPT 6 Instant via web, avaliação confirmada
+
+O usuário compartilhou a resposta com os eventos de Bruno e Carla e invalid_lines=[5,6], informou o modelo como ChatGPT 6 Instant e a interface como ChatGPT web. A importação foi executada no homelab:
+
+- Run ID: 20261024T000212Z-b8f980af3774 (identificador UTC; corresponde a 2026-10-23 20:02:12 em America/Cuiaba).
+- Fonte local informada no comando: reposta-comercial.txt (grafia usada pelo usuário; importação concluída).
+- Participante: ChatGPT; modelo declarado: ChatGPT 6 Instant; interface: ChatGPT web.
+- Configuration: Modelo informado pelo usuário; sessão, memória e ferramentas não confirmadas; tempo não medido.
+- kind: real.
+- Avaliação retornada: passed=true; valid_json=true; schema=true; events_exact=true; invalid_lines_exact=true; error=null.
+- result.json completo e hashes desse registro ainda não compartilhados. Não atribuir um tempo ou tokens/s a esta importação.
+
+## Comparação preliminar no LOG-001
+
+| Participante/configuração | Execuções observadas | Aprovações | Tempo cliente |
+| --- | --- | --- | --- |
+| Qwen2.5 3B Q4_K_M, Ollama local | 2 | 0 | 26.41 s e 25.73 s |
+| ChatGPT 6 Instant declarado, web | 1 importação | 1 | Não medido |
+
+As duas respostas Qwen foram idênticas. A resposta comercial passou pelo mesmo avaliador funcional. As condições de sessão/memória/ferramentas comerciais não foram confirmadas e o número de repetições é desigual. Este resultado descreve um caso; não constitui ranking geral nem comparação válida de velocidade. Assistência de IA no fluxo: orientação de instalação/importação e análise documental; avaliador automático determinístico.
