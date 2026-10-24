@@ -1,0 +1,238 @@
+{
+  "schema_version": "1.0.0",
+  "status": "aborted",
+  "started_at": "2026-10-24T02:23:13.888166+00:00",
+  "case": {
+    "id": "SCI-001",
+    "version": "1.0.0",
+    "category": "science_conceptual",
+    "difficulty": "introductory",
+    "evaluator": "human_rubric_v1",
+    "prompt": "prompt.md",
+    "input": "input.txt",
+    "expected": "expected.json",
+    "data_kind": "synthetic",
+    "track": "knowledge_reasoning",
+    "design": "frozen_before_first_inference"
+  },
+  "manifest_sha256": "076a7cd17199be8d8fe5fb45cb511a3478db664d7392a90aa0458114a594e9c4",
+  "prompt_sha256": "b8f3233faf2b2cd856b07add0dd02412ba6eaa3e91bf7d241f61539e3abce2cf",
+  "git_commit": "a1d76dea80b7b94821aea4ba10740bc3db6e32d5",
+  "git_status": "?? prompt-log-001.txt\n?? reposta-comercial.txt\n?? resposta-claude.txt\n?? results/published/batches/20261024T022313Z-81ab982924bb/",
+  "models": [
+    "qwen2.5:3b",
+    "qwen2.5-coder:3b-instruct-q4_K_M"
+  ],
+  "repetitions": 1,
+  "options": {
+    "host": "http://127.0.0.1:11434",
+    "timeout": 600,
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1024
+  },
+  "cooldown_seconds": 30.0,
+  "temperature_check": true,
+  "max_start_temp": 60,
+  "max_cooldown_wait": 900,
+  "temperature_source": "max coretemp temp*_input",
+  "max_gpu_temp": 60,
+  "max_cpu_usage": 20,
+  "max_gpu_usage": 10,
+  "sample_interval": 2,
+  "stable_seconds": 10,
+  "telemetry_file": "telemetry.jsonl",
+  "thermal_guard": true,
+  "abort_cpu_temp": 85.0,
+  "abort_gpu_temp": 80.0,
+  "guard_preflight": {
+    "service": "ollama.service",
+    "active": true,
+    "kill_mode": "control-group",
+    "control_group": "/system.slice/ollama.service",
+    "gpu_required": true
+  },
+  "runs": [
+    {
+      "model": "qwen2.5:3b",
+      "repetition": 1,
+      "status": "aborted",
+      "telemetry_before": {
+        "at": "2026-10-24T02:23:26.119646+00:00",
+        "errors": [],
+        "cpu_percent": 2.2839506172839474,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 3754151936,
+        "cpu_temp_c": 50.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 49.0,
+            "utilization_percent": 0.0,
+            "memory_used_mib": 4.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "recovery",
+        "run_index": 0
+      },
+      "evaluation": null,
+      "abort_reason": "CPU atingiu 86 °C (limite 85 °C)",
+      "shutdown": {
+        "confirmed": true,
+        "service": "ollama.service",
+        "errors": [],
+        "stop_returncode": 0,
+        "active_state": "inactive",
+        "main_pid": "0",
+        "remaining_pids": [],
+        "api_connection_refused": true,
+        "client_finished": true
+      },
+      "error": "CPU atingiu 86 °C (limite 85 °C)"
+    }
+  ],
+  "ollama_version": {
+    "version": "0.40.10"
+  },
+  "ollama_tags": {
+    "models": [
+      {
+        "name": "qwen2.5-coder:7b-instruct-q4_K_M",
+        "model": "qwen2.5-coder:7b-instruct-q4_K_M",
+        "modified_at": "2026-10-23T21:03:06.47498023-04:00",
+        "size": 4683087561,
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 3584,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "model": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "modified_at": "2026-10-23T20:39:54.844351432-04:00",
+        "size": 1929912626,
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "gemma3:4b",
+        "model": "gemma3:4b",
+        "modified_at": "2026-10-23T20:16:56.189891804-04:00",
+        "size": 3350272403,
+        "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3",
+            "clip"
+          ],
+          "parameter_size": "3.9B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 131072,
+          "embedding_length": 2560,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion",
+          "vision"
+        ]
+      },
+      {
+        "name": "gemma3:1b",
+        "model": "gemma3:1b",
+        "modified_at": "2026-10-23T20:10:25.769079424-04:00",
+        "size": 806067407,
+        "digest": "97558784bdc9175075a72655bf360b15da17df6b3b9e5182af9f8c0c8e58ba7c",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:1b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3"
+          ],
+          "parameter_size": "999.89M",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 1152,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion"
+        ]
+      },
+      {
+        "name": "qwen2.5:3b",
+        "model": "qwen2.5:3b",
+        "modified_at": "2026-10-23T19:30:03.58209086-04:00",
+        "size": 1929912432,
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      }
+    ]
+  },
+  "error": "CPU atingiu 86 °C (limite 85 °C)",
+  "shutdown": {
+    "confirmed": true,
+    "service": "ollama.service",
+    "errors": [],
+    "stop_returncode": 0,
+    "active_state": "inactive",
+    "main_pid": "0",
+    "remaining_pids": [],
+    "api_connection_refused": true,
+    "client_finished": true
+  },
+  "finished_at": "2026-10-24T02:23:46.729803+00:00"
+}
