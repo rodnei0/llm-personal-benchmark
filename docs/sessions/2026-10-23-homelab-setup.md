@@ -183,3 +183,17 @@ O usuário compartilhou a resposta com os eventos de Bruno e Carla e invalid_lin
 | ChatGPT 6 Instant declarado, web | 1 importação | 1 | Não medido |
 
 As duas respostas Qwen foram idênticas. A resposta comercial passou pelo mesmo avaliador funcional. As condições de sessão/memória/ferramentas comerciais não foram confirmadas e o número de repetições é desigual. Este resultado descreve um caso; não constitui ranking geral nem comparação válida de velocidade. Assistência de IA no fluxo: orientação de instalação/importação e análise documental; avaliador automático determinístico.
+
+## Etapa 11 — importação Claude Opus 5.5, esforço médio
+
+Modelo e esforço informados pelo usuário: Claude Opus 5.5, médio. Interface posteriormente confirmada: Claude web. O comando de importação usou interface="Claude — interface não confirmada"; a confirmação posterior é anotada aqui sem alterar o registro original.
+
+- Run ID: 20261024T000506Z-d6d248697714 (UTC; 2026-10-23 20:05:06 em America/Cuiaba).
+- Arquivo importado: resposta-claude.txt.
+- kind=real; tempo não medido; condições de sessão, memória e ferramentas não confirmadas.
+- Avaliação: passed=false; checks={valid_json:false}.
+- Erro: Expecting property name enclosed in double quotes: line 1 column 2 (char 1).
+
+O texto anteriormente colado pelo usuário contém aspas tipográficas/curvas misturadas com aspas ASCII e apresenta semanticamente os eventos Bruno/Carla e invalid_lines=[5,6]. O parser rejeitou o arquivo importado; checks de schema e conteúdo não foram executados. O arquivo bruto completo e seu hash ainda não foram compartilhados. Não há evidência suficiente para atribuir a transformação de aspas ao modelo: ela pode estar presente na saída original ou ter ocorrido no trajeto de cópia. Classificar como falha de JSON do artefato importado, com proveniência textual pendente, sem concluir que o modelo original produziu JSON inválido.
+
+Próxima verificação proposta: preservar essa importação e copiar novamente a MESMA resposta pelo botão de cópia do Claude web, sem pedir regeneração, comparar os arquivos e verificar as aspas. Se houver nova importação da mesma resposta, identificá-la como verificação de transcrição, não repetição independente do modelo. Não corrigir silenciosamente o texto nem contar as duas importações como duas respostas geradas.
