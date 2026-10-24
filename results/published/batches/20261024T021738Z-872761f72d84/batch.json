@@ -1,0 +1,286 @@
+{
+  "schema_version": "1.0.0",
+  "status": "completed",
+  "started_at": "2026-10-24T02:17:38.921658+00:00",
+  "case": {
+    "id": "SCI-001",
+    "version": "1.0.0",
+    "category": "science_conceptual",
+    "difficulty": "introductory",
+    "evaluator": "human_rubric_v1",
+    "prompt": "prompt.md",
+    "input": "input.txt",
+    "expected": "expected.json",
+    "data_kind": "synthetic",
+    "track": "knowledge_reasoning",
+    "design": "frozen_before_first_inference"
+  },
+  "manifest_sha256": "076a7cd17199be8d8fe5fb45cb511a3478db664d7392a90aa0458114a594e9c4",
+  "prompt_sha256": "b8f3233faf2b2cd856b07add0dd02412ba6eaa3e91bf7d241f61539e3abce2cf",
+  "git_commit": "7eb1ce97135aac2bb42a282ebf16e964eb848b13",
+  "git_status": "?? prompt-log-001.txt\n?? reposta-comercial.txt\n?? resposta-claude.txt\n?? results/published/batches/20261024T021738Z-872761f72d84/",
+  "models": [
+    "gemma3:1b"
+  ],
+  "repetitions": 1,
+  "options": {
+    "host": "http://127.0.0.1:11434",
+    "timeout": 600,
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1024
+  },
+  "cooldown_seconds": 30,
+  "temperature_check": true,
+  "max_start_temp": 60,
+  "max_cooldown_wait": 900,
+  "temperature_source": "max coretemp temp*_input",
+  "max_gpu_temp": 60,
+  "max_cpu_usage": 20,
+  "max_gpu_usage": 10,
+  "sample_interval": 2,
+  "stable_seconds": 10,
+  "telemetry_file": "telemetry.jsonl",
+  "thermal_guard": true,
+  "abort_cpu_temp": 85.0,
+  "abort_gpu_temp": 80.0,
+  "guard_preflight": {
+    "service": "ollama.service",
+    "active": true,
+    "kill_mode": "control-group",
+    "control_group": "/system.slice/ollama.service",
+    "gpu_required": true
+  },
+  "runs": [
+    {
+      "model": "gemma3:1b",
+      "repetition": 1,
+      "status": "completed",
+      "telemetry_before": {
+        "at": "2026-10-24T02:17:51.144168+00:00",
+        "errors": [],
+        "cpu_percent": 4.4036697247706424,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 3861942272,
+        "cpu_temp_c": 51.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 50.0,
+            "utilization_percent": 0.0,
+            "memory_used_mib": 4.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "recovery",
+        "run_index": 0
+      },
+      "path": "runs/20261024T021801Z-b1ae4cbfeb90",
+      "evaluation": {
+        "passed": null,
+        "status": "pending_human_review",
+        "checks": {},
+        "error": null,
+        "rubric": {
+          "review_mode": "human",
+          "required_concepts": [
+            "Luz solar contém diferentes comprimentos de onda",
+            "Moléculas atmosféricas espalham luz; comprimentos menores da luz visível são espalhados mais intensamente que os maiores",
+            "Luz espalhada de várias direções chega aos olhos e produz a aparência azul"
+          ],
+          "major_errors": [
+            "Atribuir a cor ao reflexo dos oceanos",
+            "Afirmar que apenas azul é espalhado"
+          ],
+          "reference_explanation": "Espalhamento atmosférico seletivo da luz solar (Rayleigh). A explicação pode citar percepção visual sem precisar derivar a lei de espalhamento.",
+          "sources": [
+            "https://spaceplace.nasa.gov/blue-sky/en/",
+            "https://www.weather.gov/fgz/SkyBlue"
+          ],
+          "decision_rule": "Aprovar somente se todos os conceitos obrigatórios forem atendidos sem erros materiais; justificar cada critério. Não exigir redação idêntica. Estilo não compensa erro factual.",
+          "review_fields": [
+            "reviewer",
+            "reviewed_at",
+            "criteria_evidence",
+            "major_errors_observed",
+            "passed",
+            "notes"
+          ],
+          "status": "not_yet_reviewed"
+        },
+        "note": "Nenhuma nota automática; revisar resposta original conforme rubrica"
+      },
+      "metrics": {
+        "elapsed_seconds": 8.749786014988786,
+        "elapsed_source": "perf_counter",
+        "tokens_per_second": 31.651534556153365,
+        "cpu": null,
+        "ram": null,
+        "temperature": null,
+        "unavailable_reason": "CPU, RAM e temperatura não medidas"
+      },
+      "response_sha256": "b4563eedc74e32bef9feeabdaa5173f4e2e7b5b006d5a8fddc2ef0bf5811b7b2",
+      "done_reason": "stop",
+      "eval_count": 134,
+      "telemetry_after": {
+        "at": "2026-10-24T02:18:01.292593+00:00",
+        "errors": [],
+        "cpu_percent": 33.29215565163681,
+        "ram_total_bytes": 16117575680,
+        "ram_used_bytes": 4105494528,
+        "cpu_temp_c": 70.0,
+        "gpus": [
+          {
+            "index": 0.0,
+            "temp_c": 73.0,
+            "utilization_percent": 95.0,
+            "memory_used_mib": 947.0,
+            "memory_total_mib": 2048.0
+          }
+        ],
+        "phase": "inference",
+        "run_index": 0
+      },
+      "telemetry_summary": {
+        "sample_count": 5,
+        "cpu_peak_percent": 33.29215565163681,
+        "cpu_peak_temp_c": 70.0,
+        "ram_peak_used_bytes": 4105494528,
+        "gpu_peak_temp_c": 73.0,
+        "gpu_peak_memory_used_mib": 947.0,
+        "gpu_peak_percent": 95.0
+      }
+    }
+  ],
+  "ollama_version": {
+    "version": "0.40.10"
+  },
+  "ollama_tags": {
+    "models": [
+      {
+        "name": "qwen2.5-coder:7b-instruct-q4_K_M",
+        "model": "qwen2.5-coder:7b-instruct-q4_K_M",
+        "modified_at": "2026-10-23T21:03:06.47498023-04:00",
+        "size": 4683087561,
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 3584,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "model": "qwen2.5-coder:3b-instruct-q4_K_M",
+        "modified_at": "2026-10-23T20:39:54.844351432-04:00",
+        "size": 1929912626,
+        "digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      },
+      {
+        "name": "gemma3:4b",
+        "model": "gemma3:4b",
+        "modified_at": "2026-10-23T20:16:56.189891804-04:00",
+        "size": 3350272403,
+        "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:4b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3",
+            "clip"
+          ],
+          "parameter_size": "3.9B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 131072,
+          "embedding_length": 2560,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion",
+          "vision"
+        ]
+      },
+      {
+        "name": "gemma3:1b",
+        "model": "gemma3:1b",
+        "modified_at": "2026-10-23T20:10:25.769079424-04:00",
+        "size": 806067407,
+        "digest": "97558784bdc9175075a72655bf360b15da17df6b3b9e5182af9f8c0c8e58ba7c",
+        "details": {
+          "parent_model": "dhiltgen/gemma3:1b-it-q4_K_M-llamacpp",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3"
+          ],
+          "parameter_size": "999.89M",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 1152,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion"
+        ]
+      },
+      {
+        "name": "qwen2.5:3b",
+        "model": "qwen2.5:3b",
+        "modified_at": "2026-10-23T19:30:03.58209086-04:00",
+        "size": 1929912432,
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      }
+    ]
+  },
+  "finished_at": "2026-10-24T02:18:01.781986+00:00"
+}
